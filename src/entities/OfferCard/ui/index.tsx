@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import { PlaceCardEntity } from '../interfaces';
+import { OfferCardEntity } from '../interfaces';
 
-export const PlaceCard: React.FC<PlaceCardEntity> = ({
+export const OfferCard: React.FC<OfferCardEntity> = ({
   isPremium,
   imgSrc,
   rating,

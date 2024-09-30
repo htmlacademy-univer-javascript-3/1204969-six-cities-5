@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PlaceCardEntity } from '../../entities/PlaceCard';
+import { OfferCardEntity } from '../../entities/OfferCard';
 import { MainPage } from '../../pages/Main';
 import { LoginPage } from '../../pages/Login';
 import { OfferPage } from '../../pages/Offer';
@@ -9,7 +9,7 @@ import { UserContextProvider } from '../../entities/User';
 import { LoggedRoute } from '../../features/LoggedRoute';
 
 type Props = {
-  offers: PlaceCardEntity[];
+  offers: OfferCardEntity[];
 };
 
 export const App: React.FC<Props> = ({ offers }) => (

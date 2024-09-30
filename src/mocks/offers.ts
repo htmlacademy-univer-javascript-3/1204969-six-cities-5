@@ -1,6 +1,6 @@
-import { PlaceCardEntity } from '../entities/PlaceCard';
+import { OfferCardEntity } from '../entities/OfferCard';
 
-export const offers: PlaceCardEntity[] = [
+export const offers: OfferCardEntity[] = [
   {
     id: 0,
     isPremium: true,

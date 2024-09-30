@@ -1,6 +1,6 @@
-export type PlaceType = 'Apartment' | 'Room';
+export type OfferType = 'Apartment' | 'Room';
 
-export type PlaceCardEntity = {
+export type OfferCardEntity = {
   id: number;
   isPremium?: boolean;
   imgSrc: string;
@@ -8,5 +8,5 @@ export type PlaceCardEntity = {
   rating: 1 | 2 | 3 | 4 | 5;
   price: number;
   name: string;
-  type: PlaceType;
+  type: OfferType;
 };

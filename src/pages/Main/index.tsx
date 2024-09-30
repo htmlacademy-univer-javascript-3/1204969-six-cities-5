@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import { PlaceCard, PlaceCardEntity } from '../../entities/PlaceCard';
+import { OfferCard, OfferCardEntity } from '../../entities/OfferCard';
 
 type Props = {
-  offers: PlaceCardEntity[];
+  offers: OfferCardEntity[];
 };
 
 export const MainPage: React.FC<Props> = ({ offers }) => (
@@ -117,7 +117,7 @@ export const MainPage: React.FC<Props> = ({ offers }) => (
             </form>
             <div className="cities__places-list places__list tabs__content">
               {offers.map((place) => (
-                <PlaceCard {...place} key={place.name} />
+                <OfferCard {...place} key={place.name} />
               ))}
             </div>
           </section>
