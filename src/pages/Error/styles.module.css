@@ -1,0 +1,22 @@
+.errorPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+
+  height: 100vh;
+}
+
+.statusCode {
+  font-size: 100px;
+  color: #ef5350;
+}
+
+.errorMessage {
+  text-transform: uppercase;
+}
+
+.linkBack {
+  text-decoration: underline;
+}

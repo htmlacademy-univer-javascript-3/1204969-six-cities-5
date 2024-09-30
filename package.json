@@ -6,6 +6,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx",
+    "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests"
   },
@@ -39,6 +40,8 @@
     "axios-mock-adapter": "1.22.0",
     "eslint": "8.51.0",
     "eslint-config-htmlacademy": "9.1.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.3",
     "faker": "5.5.3",
