@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import { PlaceCard, PlaceCardEntity } from '../../entities/PlaceCard';
 
 type Props = {
-  places: PlaceCardEntity[];
+  offers: PlaceCardEntity[];
 };
 
-export const MainPage: React.FC<Props> = ({ places }) => (
+export const MainPage: React.FC<Props> = ({ offers }) => (
   <div className={classNames('page', 'page--gray', 'page--main')}>
     <header className="header">
       <div className="container">
@@ -116,7 +116,7 @@ export const MainPage: React.FC<Props> = ({ places }) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {places.map((place) => (
+              {offers.map((place) => (
                 <PlaceCard {...place} key={place.name} />
               ))}
             </div>

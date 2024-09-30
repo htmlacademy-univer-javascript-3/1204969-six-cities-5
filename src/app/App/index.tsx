@@ -9,14 +9,14 @@ import { UserContextProvider } from '../../entities/User';
 import { LoggedRoute } from '../../features/LoggedRoute';
 
 type Props = {
-  places: PlaceCardEntity[];
+  offers: PlaceCardEntity[];
 };
 
-export const App: React.FC<Props> = ({ places }) => (
+export const App: React.FC<Props> = ({ offers }) => (
   <UserContextProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage places={places} />} />
+        <Route path="/" element={<MainPage offers={offers} />} />
         <Route path="/login" element={<LoginPage />} />
         <Route
           path="/favorites"

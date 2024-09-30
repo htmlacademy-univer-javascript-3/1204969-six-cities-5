@@ -1,6 +1,7 @@
 export type PlaceType = 'Apartment' | 'Room';
 
 export type PlaceCardEntity = {
+  id: number;
   isPremium?: boolean;
   imgSrc: string;
   imgAlt?: string;
