@@ -9,6 +9,7 @@ export const offers: OfferCardEntity[] = [
     rating: 4,
     name: 'Beautiful &amp; luxurious apartment at great location',
     type: 'Apartment',
+    city: 'Amsterdam',
   },
   {
     id: 1,
@@ -17,6 +18,7 @@ export const offers: OfferCardEntity[] = [
     rating: 4,
     name: 'Wood and stone place',
     type: 'Room',
+    city: 'Amsterdam',
   },
   {
     id: 2,
@@ -25,6 +27,7 @@ export const offers: OfferCardEntity[] = [
     rating: 4,
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
+    city: 'Amsterdam',
   },
   {
     id: 3,
@@ -34,6 +37,7 @@ export const offers: OfferCardEntity[] = [
     rating: 4,
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
+    city: 'Amsterdam',
   },
   {
     id: 4,
@@ -42,5 +46,6 @@ export const offers: OfferCardEntity[] = [
     rating: 4,
     name: 'Wood and stone plact',
     type: 'Room',
+    city: 'Amsterdam',
   },
 ];

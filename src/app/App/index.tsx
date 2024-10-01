@@ -8,11 +8,12 @@ import { Error404Page } from '../../pages/Error';
 import { UserContextProvider } from '../../entities/User';
 import { LoggedRoute } from '../../features/LoggedRoute';
 
-type Props = {
+type AppProps = {
   offers: OfferCardEntity[];
+  favoriteOfferIds: OfferCardEntity['id'][];
 };
 
-export const App: React.FC<Props> = ({ offers }) => (
+export const App: React.FC<AppProps> = ({ offers, favoriteOfferIds }) => (
   <UserContextProvider>
     <BrowserRouter>
       <Routes>
@@ -22,7 +23,11 @@ export const App: React.FC<Props> = ({ offers }) => (
           path="/favorites"
           element={
             <LoggedRoute>
-              <FavoritesPage />
+              <FavoritesPage
+                offers={offers.filter((offer) =>
+                  favoriteOfferIds.includes(offer.id),
+                )}
+              />
             </LoggedRoute>
           }
         />
