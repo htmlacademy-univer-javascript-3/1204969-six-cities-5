@@ -8,7 +8,7 @@ export const useReviewForm = () => {
 
   const submitForm = () => {
     // eslint-disable-next-line no-console
-    console.log('Submit form');
+    console.log('Submit form', { rating, text });
   };
 
   return {

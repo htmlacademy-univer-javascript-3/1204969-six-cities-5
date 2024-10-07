@@ -1,5 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { offers } from '../../mocks/offers';
+import { offers } from '../../entities/OfferCard/mocks';
 import { useMemo } from 'react';
 import { Header } from '../../features/Header';
 import { OffersList } from '../../features/OffersList';

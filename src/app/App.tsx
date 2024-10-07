@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { OfferCardEntity } from '../../entities/OfferCard';
-import { MainPage } from '../../pages/Main';
-import { LoginPage } from '../../pages/Login';
-import { OfferPage } from '../../pages/Offer';
-import { FavoritesPage } from '../../pages/Favorites';
-import { Error404Page } from '../../pages/Error';
-import { UserContextProvider } from '../../entities/User';
-import { LoggedRoute } from '../../features/LoggedRoute';
+import { OfferCardEntity } from '../entities/OfferCard';
+import { MainPage } from '../pages/Main';
+import { LoginPage } from '../pages/Login';
+import { OfferPage } from '../pages/Offer';
+import { FavoritesPage } from '../pages/Favorites';
+import { Error404Page } from '../pages/Error';
+import { UserContextProvider } from '../entities/User';
+import { LoggedRoute } from './LoggedRoute';
 
 type AppProps = {
   offers: OfferCardEntity[];

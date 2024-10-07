@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './app/App';
-import { offers } from './mocks/offers';
+import { offers } from './entities/OfferCard/mocks';
 import { favoriteOfferIds } from './mocks/favorites';
 
 const root = ReactDOM.createRoot(

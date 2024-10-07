@@ -1,4 +1,4 @@
-import { OfferCardEntity } from '../entities/OfferCard';
+import { OfferCardEntity } from '.';
 
 export const offers: OfferCardEntity[] = [
   {

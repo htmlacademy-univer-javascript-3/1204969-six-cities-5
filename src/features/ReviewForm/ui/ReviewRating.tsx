@@ -23,12 +23,10 @@ export const ReviewRating: React.FC<ReviewRatingProps> = ({
         <input
           className="form__rating-input visually-hidden"
           name="rating"
-          value={rating}
           id={`${rating}-stars`}
           type="radio"
-          checked={value >= rating}
-          onClick={() => onChange(rating)}
-          readOnly
+          checked={value === rating}
+          onChange={() => onChange(rating)}
         />
         <label
           htmlFor={`${rating}-stars`}
