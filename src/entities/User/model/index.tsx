@@ -3,7 +3,7 @@ import { UserData, UserDataContext } from '../interfaces';
 import { WithChildren } from '../../../shared/interfaces';
 
 const defaultUserDataValue = {
-  logged: false,
+  logged: true,
 };
 
 const defaultContextValue: UserDataContext = {
