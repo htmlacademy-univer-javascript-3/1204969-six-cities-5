@@ -1,1 +1,2 @@
-export type { CityName } from './interfaces';
+export type { CityName, City } from './interfaces';
+export { cities } from './mocks';
