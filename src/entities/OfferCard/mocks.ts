@@ -10,6 +10,8 @@ export const offers: OfferCardEntity[] = [
     name: 'Beautiful &amp; luxurious apartment at great location',
     type: 'Apartment',
     city: 'Amsterdam',
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
   },
   {
     id: 1,
@@ -19,6 +21,8 @@ export const offers: OfferCardEntity[] = [
     name: 'Wood and stone place',
     type: 'Room',
     city: 'Amsterdam',
+    latitude: 52.3609553943508,
+    longitude: 4.85309666406198,
   },
   {
     id: 2,
@@ -28,6 +32,8 @@ export const offers: OfferCardEntity[] = [
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
     city: 'Amsterdam',
+    latitude: 52.3909553943508,
+    longitude: 4.929309666406198,
   },
   {
     id: 3,
@@ -38,14 +44,7 @@ export const offers: OfferCardEntity[] = [
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
     city: 'Amsterdam',
-  },
-  {
-    id: 4,
-    imgSrc: 'img/room.jpg',
-    price: 80,
-    rating: 4,
-    name: 'Wood and stone plact',
-    type: 'Room',
-    city: 'Amsterdam',
+    latitude: 52.3809553943508,
+    longitude: 4.939309666406198,
   },
 ];

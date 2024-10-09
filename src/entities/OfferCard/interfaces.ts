@@ -13,4 +13,6 @@ export type OfferCardEntity = {
   type: OfferType;
   isBookmarked?: boolean;
   city: CityName;
+  latitude: number;
+  longitude: number;
 };

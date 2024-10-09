@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import { OfferCardEntity } from '../../entities/OfferCard';
 import { OffersList } from '../../features/OffersList';
 import { Header } from '../../features/Header';
+import { Map } from '../../features/Map';
+import { cities } from '../../entities/City';
 
 type MainPageProps = {
   offers: OfferCardEntity[];
@@ -84,7 +86,7 @@ export const MainPage: React.FC<MainPageProps> = ({ offers }) => (
             <OffersList offers={offers} mix="cities__places-list" />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map city={cities.Amsterdam!} points={offers} />
           </div>
         </div>
       </div>
