@@ -1,0 +1,1 @@
+export { OtherPlacesNearby } from './ui';

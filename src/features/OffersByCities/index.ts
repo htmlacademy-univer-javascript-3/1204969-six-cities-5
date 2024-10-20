@@ -1,1 +1,0 @@
-export { OffersByCities } from './ui';

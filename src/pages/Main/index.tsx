@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { OfferCardEntity } from '../../entities/OfferCard';
-import { OffersList } from '../../features/OffersList';
+import { OfferCardEntity, OffersList } from '../../entities/OfferCard';
 import { Header } from '../../features/Header';
 import { Map } from '../../features/Map';
 import { cities } from '../../entities/City';
+
+import styles from './style.module.css';
 
 type MainPageProps = {
   offers: OfferCardEntity[];
@@ -52,7 +53,13 @@ export const MainPage: React.FC<MainPageProps> = ({ offers }) => (
         </section>
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
+        <div
+          className={classNames(
+            'cities__places-container',
+            'container',
+            styles.gridContainer,
+          )}
+        >
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">312 places to stay in Amsterdam</b>
