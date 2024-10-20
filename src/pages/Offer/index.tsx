@@ -5,10 +5,12 @@ import { Header } from '../../features/Header';
 import { Rating } from '../../shared/ui/Rating';
 import { ReviewForm } from '../../features/ReviewForm';
 import { ReviewsList } from '../../entities/Review';
+import { Map } from '../../features/Map';
 import classNames from 'classnames';
+import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
+import { cities } from '../../entities/City';
 
 import styles from './styles.module.css';
-import { OffersList } from '../../entities/OfferCard';
 
 export const OfferPage = () => {
   const { id } = useParams();
@@ -150,16 +152,15 @@ export const OfferPage = () => {
               <ReviewForm />
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <section className={classNames('map', 'container', styles.offerMap)}>
+            <Map
+              city={cities.Amsterdam!}
+              points={[offer, ...offers.slice(0, 3)]}
+            />
+          </section>
         </section>
         <div className="container">
-          <section className="near-places places">
-            <h2 className="near-places__title">
-              Other places in the neighbourhood
-            </h2>
-
-            <OffersList offers={offers.slice(0, 3)} mix="near-places__list" />
-          </section>
+          <OtherPlacesNearby />
         </div>
       </main>
     </div>
