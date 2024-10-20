@@ -5,6 +5,10 @@ import { Header } from '../../features/Header';
 import { OffersList } from '../../features/OffersList';
 import { Rating } from '../../shared/ui/Rating';
 import { ReviewForm } from '../../features/ReviewForm';
+import { ReviewsList } from '../../entities/Review/ui/ReviewsList';
+import classNames from 'classnames';
+
+import styles from './styles.module.css';
 
 export const OfferPage = () => {
   const { id } = useParams();
@@ -40,7 +44,13 @@ export const OfferPage = () => {
             </div>
           </div>
 
-          <div className="offer__container container">
+          <div
+            className={classNames(
+              'offer__container',
+              'container',
+              styles.offerContainer,
+            )}
+          >
             <div className="offer__wrapper">
               {Boolean(offer.isPremium) && (
                 <div className="offer__mark">
@@ -124,46 +134,20 @@ export const OfferPage = () => {
                   </p>
                 </div>
               </div>
-              <section className="offer__reviews reviews">
-                <h2 className="reviews__title">
-                  Reviews &middot; <span className="reviews__amount">1</span>
-                </h2>
-                <ul className="reviews__list">
-                  <li className="reviews__item">
-                    <div className="reviews__user user">
-                      <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img
-                          className="reviews__avatar user__avatar"
-                          src="img/avatar-max.jpg"
-                          width="54"
-                          height="54"
-                          alt="Reviews avatar"
-                        />
-                      </div>
-                      <span className="reviews__user-name">Max</span>
-                    </div>
-                    <div className="reviews__info">
-                      <Rating
-                        rating={4}
-                        containerMix="reviews__rating"
-                        starsMix="reviews__stars"
-                        mode="compact"
-                      />
+              <ReviewsList
+                reviews={[
+                  {
+                    userName: 'Max',
+                    userAvatarSrc: 'img/avatar-max.jpg',
+                    rating: 4,
+                    text: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+                    date: new Date('2019-04-24'),
+                  },
+                ]}
+                containerMix="offer__reviews"
+              />
 
-                      <p className="reviews__text">
-                        A quiet cozy and picturesque that hides behind a a river
-                        by the unique lightness of Amsterdam. The building is
-                        green and from 18th century.
-                      </p>
-                      <time className="reviews__time" dateTime="2019-04-24">
-                        April 2019
-                      </time>
-                    </div>
-                  </li>
-                </ul>
-
-                <ReviewForm />
-              </section>
+              <ReviewForm />
             </div>
           </div>
           <section className="offer__map map"></section>
