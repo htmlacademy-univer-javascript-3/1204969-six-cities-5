@@ -2,13 +2,13 @@ import { Navigate, useParams } from 'react-router-dom';
 import { offers } from '../../entities/OfferCard/mocks';
 import { useMemo } from 'react';
 import { Header } from '../../features/Header';
-import { OffersList } from '../../features/OffersList';
 import { Rating } from '../../shared/ui/Rating';
 import { ReviewForm } from '../../features/ReviewForm';
-import { ReviewsList } from '../../entities/Review/ui/ReviewsList';
+import { ReviewsList } from '../../entities/Review';
 import classNames from 'classnames';
 
 import styles from './styles.module.css';
+import { OffersList } from '../../entities/OfferCard';
 
 export const OfferPage = () => {
   const { id } = useParams();

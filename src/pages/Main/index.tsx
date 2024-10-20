@@ -1,6 +1,5 @@
 import classNames from 'classnames';
-import { OfferCardEntity } from '../../entities/OfferCard';
-import { OffersList } from '../../features/OffersList';
+import { OfferCardEntity, OffersList } from '../../entities/OfferCard';
 import { Header } from '../../features/Header';
 import { Map } from '../../features/Map';
 import { cities } from '../../entities/City';

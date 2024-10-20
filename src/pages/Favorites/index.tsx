@@ -1,6 +1,5 @@
-import { OfferCardEntity } from '../../entities/OfferCard';
+import { OfferCardEntity, OffersByCities } from '../../entities/OfferCard';
 import { Header } from '../../features/Header';
-import { OffersByCities } from '../../features/OffersByCities';
 
 type FavoritesPageProps = {
   offers: OfferCardEntity[];
