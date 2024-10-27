@@ -7,6 +7,7 @@ import { FavoritesPage } from '../pages/Favorites';
 import { Error404Page } from '../pages/Error';
 import { UserContextProvider } from '../entities/User';
 import { LoggedRoute } from './LoggedRoute';
+import { AppRoutes } from './routes';
 
 type AppProps = {
   offers: OfferCardEntity[];
@@ -17,10 +18,10 @@ export const App: React.FC<AppProps> = ({ offers, favoriteOfferIds }) => (
   <UserContextProvider>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage offers={offers} />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path={AppRoutes.HOME} element={<MainPage offers={offers} />} />
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
         <Route
-          path="/favorites"
+          path={AppRoutes.FAVORITES}
           element={
             <LoggedRoute>
               <FavoritesPage
@@ -31,8 +32,8 @@ export const App: React.FC<AppProps> = ({ offers, favoriteOfferIds }) => (
             </LoggedRoute>
           }
         />
-        <Route path="/offer/:id" element={<OfferPage />} />
-        <Route path="*" element={<Error404Page />} />
+        <Route path={`${AppRoutes.OFFER}/:id`} element={<OfferPage />} />
+        <Route path={AppRoutes.NOT_FOUND} element={<Error404Page />} />
       </Routes>
     </BrowserRouter>
   </UserContextProvider>

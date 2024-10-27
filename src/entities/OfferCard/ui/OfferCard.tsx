@@ -3,6 +3,7 @@ import { OfferCardEntity } from '../interfaces';
 import { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from '../../../shared/ui/Rating';
+import { AppRoutes } from '../../../app/routes';
 
 type Props = {
   onMouseOver?: MouseEventHandler;
@@ -58,7 +59,7 @@ export const OfferCard: React.FC<Props> = ({
           'place-card__image-wrapper',
         )}
       >
-        <Link to={`/offer/${id}`}>
+        <Link to={`${AppRoutes.OFFER}/${id}`}>
           <img
             className="place-card__image"
             src={imgSrc}
@@ -102,7 +103,7 @@ export const OfferCard: React.FC<Props> = ({
         />
 
         <h2 className="place-card__name">
-          <Link to={`/offer/${id}`}>{name}</Link>
+          <Link to={`${AppRoutes.OFFER}/${id}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
