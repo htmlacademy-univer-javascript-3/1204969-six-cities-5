@@ -1,2 +1,2 @@
 export type { CityName, City } from './interfaces';
-export { cities } from './mocks';
+export { cities } from './const';
