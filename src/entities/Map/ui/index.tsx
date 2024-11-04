@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { City } from '../../../entities/City';
+import { City } from '../../City';
 import { useMap } from '../model/useMap';
 import { layerGroup, Marker } from 'leaflet';
 import { Point } from '../interfaces';
@@ -8,10 +8,10 @@ import { currentCustomIcon, defaultCustomIcon } from './MapIcons';
 type MapProps = {
   city: City;
   points: Point[];
-  selectedPoint?: Point;
+  selectedPointId?: Point['id'];
 };
 
-export const Map: React.FC<MapProps> = ({ city, points, selectedPoint }) => {
+export const Map: React.FC<MapProps> = ({ city, points, selectedPointId }) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -26,7 +26,7 @@ export const Map: React.FC<MapProps> = ({ city, points, selectedPoint }) => {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.name === selectedPoint.name
+            point.id === selectedPointId
               ? currentCustomIcon
               : defaultCustomIcon,
           )
@@ -37,7 +37,7 @@ export const Map: React.FC<MapProps> = ({ city, points, selectedPoint }) => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, selectedPoint]);
+  }, [map, points, selectedPointId]);
 
   return <div style={{ height: '500px' }} ref={mapRef}></div>;
 };

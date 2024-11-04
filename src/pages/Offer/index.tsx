@@ -5,7 +5,7 @@ import { Header } from '../../features/Header';
 import { Rating } from '../../shared/ui/Rating';
 import { ReviewForm } from '../../features/ReviewForm';
 import { ReviewsList } from '../../entities/Review';
-import { Map } from '../../features/Map';
+import { Map } from '../../entities/Map';
 import classNames from 'classnames';
 import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
 import { cities } from '../../entities/City';
