@@ -19,7 +19,7 @@ export const OffersByCities: React.FC<OffersByCitiesProps> = ({ offers }) => {
         citiesMap[city] = [];
       }
 
-      citiesMap[city].push(offer);
+      citiesMap[city]?.push(offer);
     });
 
     return citiesMap;

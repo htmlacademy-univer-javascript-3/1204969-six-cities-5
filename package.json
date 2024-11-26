@@ -9,7 +9,8 @@
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
     "test": "vitest --passWithNoTests",
-    "fetch-types": "npx openapi-typescript https://14.design.htmlacademy.pro/spec/project/six-cities -o ./types/schema.d.ts"
+    "fetch-types": "npx openapi-typescript https://14.design.htmlacademy.pro/spec/project/six-cities -o ./types/schema.d.ts",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.7",
