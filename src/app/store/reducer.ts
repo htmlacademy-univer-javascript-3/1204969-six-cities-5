@@ -1,7 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
+
+import { cities } from '../../entities/City';
 import { setCity, setOffers, setOffersLoadingStatus } from './actions';
 import { State } from './interfaces';
-import { cities } from '../../entities/City';
 
 const initialState: State = {
   city: cities.Paris,

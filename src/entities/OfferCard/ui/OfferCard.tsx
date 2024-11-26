@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { OfferPreview } from '../interfaces';
 import { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
-import { Rating } from '../../../shared/ui/Rating';
+
 import { AppRoutes } from '../../../app/routes';
+import { Rating } from '../../../shared/ui/Rating';
+import { OfferPreview } from '../interfaces';
 
 type Props = {
   onMouseOver?: MouseEventHandler;

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
-import { baseUrl, timeout } from './axios-config';
 import { StatusCodes } from 'http-status-codes';
+
+import { baseUrl, timeout } from './axios-config';
 import { getToken } from './token';
 
 type DetailMessageType = {

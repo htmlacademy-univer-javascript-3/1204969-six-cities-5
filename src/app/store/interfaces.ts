@@ -1,6 +1,6 @@
-import { store } from '.';
 import { City } from '../../entities/City';
 import { OfferCardEntity } from '../../entities/OfferCard';
+import { store } from '.';
 
 export type State = {
   city: City;

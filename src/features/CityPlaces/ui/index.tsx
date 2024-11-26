@@ -1,13 +1,13 @@
 import classNames from 'classnames';
+import { useMemo, useState } from 'react';
 
-import styles from './style.module.css';
+import { City } from '../../../entities/City';
+import { Map } from '../../../entities/Map';
 import { OfferCardEntity, OffersList } from '../../../entities/OfferCard';
 import { Select } from '../../../shared/ui/Select';
-import { Map } from '../../../entities/Map';
-import { City } from '../../../entities/City';
-import { useMemo, useState } from 'react';
-import { SortVariant } from '../interfaces';
 import { sortVariants } from '../consts';
+import { SortVariant } from '../interfaces';
+import styles from './style.module.css';
 
 type CityPlacesProps = { offers: OfferCardEntity[]; city: City };
 

@@ -1,16 +1,17 @@
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import { OfferCardEntity } from '../entities/OfferCard';
-import { MainPage } from '../pages/Main';
-import { LoginPage } from '../pages/Login';
-import { OfferPage } from '../pages/Offer';
-import { FavoritesPage } from '../pages/Favorites';
-import { Error404Page } from '../pages/Error';
+import { offers } from '../entities/OfferCard/mocks';
 import { UserContextProvider } from '../entities/User';
+import { Error404Page } from '../pages/Error';
+import { FavoritesPage } from '../pages/Favorites';
+import { LoginPage } from '../pages/Login';
+import { MainPage } from '../pages/Main';
+import { OfferPage } from '../pages/Offer';
 import { LoggedRoute } from './LoggedRoute';
 import { AppRoutes } from './routes';
-import { Provider } from 'react-redux';
 import { store } from './store';
-import { offers } from '../entities/OfferCard/mocks';
 
 type AppProps = {
   favoriteOfferIds: OfferCardEntity['id'][];

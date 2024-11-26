@@ -1,17 +1,17 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { offers } from '../../entities/OfferCard/mocks';
-import { useMemo } from 'react';
-import { Header } from '../../features/Header';
-import { Rating } from '../../shared/ui/Rating';
-import { ReviewForm } from '../../features/ReviewForm';
-import { ReviewsList } from '../../entities/Review';
-import { Map } from '../../entities/Map';
 import classNames from 'classnames';
-import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
-import { cities } from '../../entities/City';
+import { useMemo } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
-import styles from './styles.module.css';
+import { cities } from '../../entities/City';
+import { Map } from '../../entities/Map';
 import { OfferMaximum } from '../../entities/OfferCard/interfaces';
+import { offers } from '../../entities/OfferCard/mocks';
+import { ReviewsList } from '../../entities/Review';
+import { Header } from '../../features/Header';
+import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
+import { ReviewForm } from '../../features/ReviewForm';
+import { Rating } from '../../shared/ui/Rating';
+import styles from './styles.module.css';
 
 export const OfferPage = () => {
   const { id } = useParams();

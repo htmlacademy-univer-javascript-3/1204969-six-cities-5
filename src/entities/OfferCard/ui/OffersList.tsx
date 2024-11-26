@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import { OfferCard, OfferCardEntity } from '..';
 
 type OffersListProps = {

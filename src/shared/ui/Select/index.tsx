@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import classNames from 'classnames';
+import { useState } from 'react';
 
 export const Select = <T extends string>({
   options,
