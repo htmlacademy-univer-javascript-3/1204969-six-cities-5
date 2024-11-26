@@ -1,6 +1,7 @@
 import { createContext, useMemo, useState } from 'react';
-import { UserData, UserDataContext } from '../interfaces';
+
 import { WithChildren } from '../../../shared/interfaces';
+import { UserData, UserDataContext } from '../interfaces';
 
 const defaultUserDataValue = {
   logged: true,

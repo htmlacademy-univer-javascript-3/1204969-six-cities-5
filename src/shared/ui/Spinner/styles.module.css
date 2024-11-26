@@ -1,0 +1,34 @@
+.spinner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &::before {
+    --size: 36px;
+
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: var(--size);
+    height: var(--size);
+    border: 3px yellowgreen solid;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+
+    animation: spinner 1s linear infinite;
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

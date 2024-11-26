@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react';
-import { City } from '../../City';
-import { useMap } from '../model/useMap';
 import { layerGroup, Marker } from 'leaflet';
+import { useEffect, useRef } from 'react';
+
+import { City } from '../../City';
 import { Point } from '../interfaces';
+import { useMap } from '../model/useMap';
 import { currentCustomIcon, defaultCustomIcon } from './MapIcons';
 
 type MapProps = {
@@ -20,8 +21,8 @@ export const Map: React.FC<MapProps> = ({ city, points, selectedPointId }) => {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.latitude,
-          lng: point.longitude,
+          lat: point.location.latitude,
+          lng: point.location.longitude,
         });
 
         marker

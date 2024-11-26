@@ -8,7 +8,9 @@
     "lint": "eslint src --ext ts,tsx",
     "lint:fix": "eslint src --ext ts,tsx --fix",
     "preview": "vite preview",
-    "test": "vitest --passWithNoTests"
+    "test": "vitest --passWithNoTests",
+    "fetch-types": "npx openapi-typescript https://14.design.htmlacademy.pro/spec/project/six-cities -o ./types/schema.d.ts",
+    "tsc": "tsc"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.7",
@@ -44,8 +46,10 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "faker": "5.5.3",
     "jsdom": "22.1.0",
+    "openapi-typescript": "^7.4.3",
     "typescript": "5.2.2",
     "vite": "4.4.11",
     "vitest": "0.34.6"

@@ -1,5 +1,7 @@
 export type Point = {
-  id: number;
-  latitude: number;
-  longitude: number;
+  id: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 };

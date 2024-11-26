@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+
 import { OfferCard, OfferCardEntity } from '..';
 
 type OffersListProps = {
@@ -16,7 +17,7 @@ export const OffersList: React.FC<OffersListProps> = ({
     {offers.map((place) => (
       <OfferCard
         {...place}
-        key={place.name}
+        key={place.id}
         onMouseOver={() => {
           changeActiveOffer?.(place.id);
         }}

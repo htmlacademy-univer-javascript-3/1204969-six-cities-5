@@ -1,7 +1,8 @@
 import classNames from 'classnames';
+
+import { setCity } from '../../../app/store/actions';
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
 import { cities } from '../const';
-import { setCity } from '../../../app/store/actions';
 import { CityName } from '../interfaces';
 
 export const CitiesList = () => {
