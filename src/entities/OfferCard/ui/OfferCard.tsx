@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { OfferCardEntity } from '../interfaces';
+import { OfferPreview } from '../interfaces';
 import { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 import { Rating } from '../../../shared/ui/Rating';
@@ -9,8 +9,8 @@ type Props = {
   onMouseOver?: MouseEventHandler;
   onMouseLeave?: MouseEventHandler;
   mode?: 'full' | 'compact';
-  bookmarked?: boolean;
-} & OfferCardEntity;
+  imgAlt?: string;
+} & OfferPreview;
 
 const imagesSize = {
   full: {
@@ -26,17 +26,19 @@ const imagesSize = {
 export const OfferCard: React.FC<Props> = ({
   id,
   isPremium,
-  imgSrc,
-  rating,
+  previewImage,
+  rating = 0,
   imgAlt = 'Place image',
   price,
-  name,
+  title,
   type,
   onMouseOver,
   onMouseLeave,
   mode = 'full',
-  bookmarked,
+  isFavorite,
 }) => {
+  if (!id) return null;
+
   const isFullMode = mode === 'full';
 
   return (
@@ -62,7 +64,7 @@ export const OfferCard: React.FC<Props> = ({
         <Link to={`${AppRoutes.OFFER}/${id}`}>
           <img
             className="place-card__image"
-            src={imgSrc}
+            src={previewImage}
             width={imagesSize[mode].width}
             height={imagesSize[mode].height}
             alt={imgAlt}
@@ -84,7 +86,7 @@ export const OfferCard: React.FC<Props> = ({
           </div>
           <button
             className={classNames('place-card__bookmark-button', 'button', {
-              ['place-card__bookmark-button--active']: Boolean(bookmarked),
+              ['place-card__bookmark-button--active']: isFavorite,
             })}
             type="button"
           >
@@ -103,7 +105,7 @@ export const OfferCard: React.FC<Props> = ({
         />
 
         <h2 className="place-card__name">
-          <Link to={`${AppRoutes.OFFER}/${id}`}>{name}</Link>
+          <Link to={`${AppRoutes.OFFER}/${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

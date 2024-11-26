@@ -1,27 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import classNames from 'classnames';
 import { Header } from '../../features/Header';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { cities } from '../../entities/City';
-import { setCity, setOffers } from '../../app/store/actions';
-import { offers as mockOffers } from '../../entities/OfferCard/mocks';
 import { CitiesList } from '../../entities/City/ui/CitiesList';
 import { CityPlaces } from '../../features/CityPlaces';
+import { fetchOffers } from '../../app/store/api-actions';
+import { Spinner } from '../../shared/ui/Spinner';
 
 export const MainPage: React.FC = () => {
   const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
+  const isLoading = useAppSelector((state) => state.isOffersLoading);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setCity(cities.Paris));
-    dispatch(setOffers(mockOffers));
+    dispatch(fetchOffers());
   }, [dispatch]);
 
-  if (!city || !offers) {
-    return null;
-  }
+  const offersByCity = useMemo(
+    () => (offers ?? []).filter((offer) => offer.city.name === city?.name),
+    [city, offers],
+  );
 
   return (
     <div className={classNames('page', 'page--gray', 'page--main')}>
@@ -34,7 +34,11 @@ export const MainPage: React.FC = () => {
             <CitiesList />
           </section>
         </div>
-        <CityPlaces offers={offers} city={city} />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <CityPlaces offers={offersByCity} city={city} />
+        )}
       </main>
     </div>
   );

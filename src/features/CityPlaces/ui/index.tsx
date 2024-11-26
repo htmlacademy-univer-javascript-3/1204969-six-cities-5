@@ -12,6 +12,9 @@ import { sortVariants } from '../consts';
 type CityPlacesProps = { offers: OfferCardEntity[]; city: City };
 
 export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
+  // FIXME: хранение стейта в этом компоненте вызывает ререндеры карты
+  // 1. на изменение activeOfferId — это правильно, но подумать, как оптимизировать
+  // 2. на изменение sortVariant ререндерить карту неправильно
   const [activeOfferId, setActiveOfferId] = useState<
     OfferCardEntity['id'] | null
   >(null);

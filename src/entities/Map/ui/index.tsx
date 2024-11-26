@@ -20,8 +20,8 @@ export const Map: React.FC<MapProps> = ({ city, points, selectedPointId }) => {
       const markerLayer = layerGroup().addTo(map);
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.latitude,
-          lng: point.longitude,
+          lat: point.location.latitude,
+          lng: point.location.longitude,
         });
 
         marker

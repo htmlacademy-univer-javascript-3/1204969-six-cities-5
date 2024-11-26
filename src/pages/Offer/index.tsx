@@ -11,12 +11,13 @@ import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
 import { cities } from '../../entities/City';
 
 import styles from './styles.module.css';
+import { OfferMaximum } from '../../entities/OfferCard/interfaces';
 
 export const OfferPage = () => {
   const { id } = useParams();
 
-  const offer = useMemo(() => {
-    return offers.find(({ id: offerId }) => offerId === Number(id));
+  const offer: OfferMaximum = useMemo(() => {
+    return offers.find(({ id: offerId }) => offerId === id);
   }, [id]);
 
   if (window.isNaN(Number(id)) || !offer) {
@@ -31,16 +32,12 @@ export const OfferPage = () => {
         <section className="offer">
           <div className="offer__gallery-container container">
             <div className="offer__gallery">
-              {Array.from({ length: 6 }).map(() => (
+              {offer.images?.map((image) => (
                 <div
                   className="offer__image-wrapper"
-                  key={`${offer.imgSrc}-${Math.random()}`}
+                  key={`${image}-${Math.random()}`}
                 >
-                  <img
-                    className="offer__image"
-                    src={offer.imgSrc}
-                    alt={offer.imgAlt}
-                  />
+                  <img className="offer__image" src={image} />
                 </div>
               ))}
             </div>
@@ -62,7 +59,7 @@ export const OfferPage = () => {
               <div className="offer__name-wrapper">
                 <h1
                   className="offer__name"
-                  dangerouslySetInnerHTML={{ __html: offer.name }}
+                  dangerouslySetInnerHTML={{ __html: offer.title ?? '' }}
                 />
                 <button className="offer__bookmark-button button" type="button">
                   <svg className="offer__bookmark-icon" width="31" height="33">

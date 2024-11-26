@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { CityName } from '../../City';
 import { OfferCard, OfferCardEntity } from '..';
+import { CityNames } from '../../City/interfaces';
 
 type OffersByCitiesProps = { offers: OfferCardEntity[] };
 
@@ -9,13 +10,15 @@ export const OffersByCities: React.FC<OffersByCitiesProps> = ({ offers }) => {
     const citiesMap: Partial<Record<CityName, OfferCardEntity[]>> = {};
 
     offers.forEach((offer) => {
-      const city = offer.city;
+      const city = offer.city.name;
+
+      if (!CityNames.includes(city)) return;
 
       if (!citiesMap[city]) {
         citiesMap[city] = [];
       }
 
-      citiesMap[city]?.push(offer);
+      citiesMap[city].push(offer);
     });
 
     return citiesMap;
@@ -34,7 +37,7 @@ export const OffersByCities: React.FC<OffersByCitiesProps> = ({ offers }) => {
           </div>
           <div className="favorites__places">
             {cityOffers.map((offer) => (
-              <OfferCard {...offer} mode="compact" key={offer.name} />
+              <OfferCard {...offer} mode="compact" key={offer.id} />
             ))}
           </div>
         </li>
