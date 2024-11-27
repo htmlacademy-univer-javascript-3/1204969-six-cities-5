@@ -1,7 +1,4 @@
-export type ReviewEntity = {
-  date: Date;
-  text: string;
-  rating: number;
-  userName: string;
-  userAvatarSrc: string;
-};
+import { components } from '../../../types/schema';
+import { MakeAllRequired } from '../../shared/interfaces';
+
+export type CommentGet = MakeAllRequired<components['schemas']['CommentGet']>;

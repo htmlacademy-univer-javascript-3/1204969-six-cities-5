@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
-import { ReviewEntity } from '../interfaces';
+import { CommentGet } from '../interfaces';
 import { Review } from './Review';
 
 type ReviewsListProps = {
-  reviews: ReviewEntity[];
+  reviews: CommentGet[];
   containerMix?: string;
 };
 
@@ -18,7 +18,7 @@ export const ReviewsList: React.FC<ReviewsListProps> = ({
     </h2>
     <ul className="reviews__list">
       {reviews.map((review) => (
-        <Review key={review.date.toString()} {...review} />
+        <Review key={`${review.user.name}-${review.date}`} {...review} />
       ))}
     </ul>
   </section>

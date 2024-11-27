@@ -1,17 +1,27 @@
-import { useReviewForm } from '../model';
+import { useState } from 'react';
+
 import { ReviewRating } from './ReviewRating';
 
-export const ReviewForm = () => {
-  const { rating, setRating, text, setText, isSubmitDisabled, submitForm } =
-    useReviewForm();
+type ReviewFormProps = {
+  onSubmit: ({ rating, comment }: { rating: number; comment: string }) => void;
+};
+
+export const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit: submit }) => {
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+
+  const isSubmitDisabled = rating === 0 || comment.length < 50;
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
+    setComment(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitForm();
+    submit({ rating, comment });
+
+    setRating(0);
+    setComment('');
   };
 
   return (
@@ -27,7 +37,7 @@ export const ReviewForm = () => {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={text}
+        value={comment}
         onChange={handleTextChange}
       />
 

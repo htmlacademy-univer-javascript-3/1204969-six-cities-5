@@ -1,17 +1,25 @@
 import { City } from '../../entities/City';
 import { OfferCardEntity } from '../../entities/OfferCard';
+import { OfferMaximum } from '../../entities/OfferCard/interfaces';
+import { CommentGet } from '../../entities/Review/interfaces';
 import { User } from '../../entities/User/interfaces';
-import { AuthorizationStatus } from '../consts';
+import { AuthorizationStatus, FetchStatus } from '../consts';
 import { store } from '.';
 
 export type State = {
   city: City;
 
   offers?: OfferCardEntity[];
-  isOffersLoading: boolean;
+  offersFetchStatus: FetchStatus;
 
   user?: User;
   authorizationStatus: AuthorizationStatus;
+
+  offer?: OfferMaximum;
+  offerFetchStatus: FetchStatus;
+
+  reviews?: CommentGet[];
+  reviewsFetchStatus: FetchStatus;
 };
 
 export type AppDispatch = typeof store.dispatch;

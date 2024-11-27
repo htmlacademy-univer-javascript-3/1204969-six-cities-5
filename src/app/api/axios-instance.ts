@@ -42,7 +42,7 @@ export const createAPI = (): AxiosInstance => {
         console.error('ERROR', error.response.data);
       }
 
-      throw error;
+      return error.response;
     },
   );
 

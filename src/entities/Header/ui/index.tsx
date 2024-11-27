@@ -39,9 +39,9 @@ export const Header: React.FC<HeaderProps> = ({ isOnlyLogo }) => {
               <ul className="header__nav-list">
                 {isAuthorizated && (
                   <li className="header__nav-item user">
-                    <a
+                    <Link
                       className="header__nav-link header__nav-link--profile"
-                      href="#"
+                      to={AppRoutes.FAVORITES}
                     >
                       <div
                         className="header__avatar-wrapper user__avatar-wrapper"
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({ isOnlyLogo }) => {
                         {user?.email}
                       </span>
                       <span className="header__favorite-count">3</span>
-                    </a>
+                    </Link>
                   </li>
                 )}
 
