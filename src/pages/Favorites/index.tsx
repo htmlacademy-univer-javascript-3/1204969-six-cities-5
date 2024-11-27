@@ -1,5 +1,5 @@
+import { Header } from '../../entities/Header';
 import { OfferCardEntity, OffersByCities } from '../../entities/OfferCard';
-import { Header } from '../../features/Header';
 
 type FavoritesPageProps = {
   offers: OfferCardEntity[];

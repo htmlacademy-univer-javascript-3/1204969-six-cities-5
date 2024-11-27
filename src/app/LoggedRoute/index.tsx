@@ -1,10 +1,13 @@
 import { Navigate } from 'react-router-dom';
 
-import { useUserContext } from '../../entities/User';
 import { WithChildren } from '../../shared/interfaces';
+import { AuthorizationStatus } from '../consts';
+import { useAppSelector } from '../store/hooks';
 
 export const LoggedRoute: React.FC<WithChildren> = ({ children }) => {
-  const { user } = useUserContext();
+  const isAuthorizated = useAppSelector(
+    (state) => state.authorizationStatus === AuthorizationStatus.Auth,
+  );
 
-  return user.logged ? children : <Navigate to={'/login'} />;
+  return isAuthorizated ? children : <Navigate to={'/login'} />;
 };

@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { Navigate, useParams } from 'react-router-dom';
 
+import { Header } from '../../entities/Header';
 import { OfferMaximum } from '../../entities/OfferCard/interfaces';
 import { ReviewsList } from '../../entities/Review';
-import { Header } from '../../features/Header';
 import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
 import { ReviewForm } from '../../features/ReviewForm';
 import { Rating } from '../../shared/ui/Rating';
