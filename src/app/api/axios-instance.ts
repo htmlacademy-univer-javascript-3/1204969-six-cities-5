@@ -38,10 +38,8 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
-        const detailMessage = error.response.data;
-
         // eslint-disable-next-line no-console
-        console.error(detailMessage.message);
+        console.error('ERROR', error.response.data);
       }
 
       throw error;

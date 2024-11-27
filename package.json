@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "test": "vitest --passWithNoTests",
     "fetch-types": "npx openapi-typescript https://14.design.htmlacademy.pro/spec/project/six-cities -o ./types/schema.d.ts",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "fullcheck": "npm run tsc && npm run lint && npm run test"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.9.7",

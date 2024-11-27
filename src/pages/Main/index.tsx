@@ -4,8 +4,8 @@ import { useEffect, useMemo } from 'react';
 import { fetchOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { CitiesList } from '../../entities/City/ui/CitiesList';
+import { Header } from '../../entities/Header';
 import { CityPlaces } from '../../features/CityPlaces';
-import { Header } from '../../features/Header';
 import { Spinner } from '../../shared/ui/Spinner';
 
 export const MainPage: React.FC = () => {
