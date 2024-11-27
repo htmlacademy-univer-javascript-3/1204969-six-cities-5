@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import { useEffect, useMemo } from 'react';
 
+import { FetchStatus } from '../../app/consts';
+import { clearOffers } from '../../app/store/actions';
 import { fetchOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { CitiesList } from '../../entities/City/ui/CitiesList';
@@ -11,12 +13,16 @@ import { Spinner } from '../../shared/ui/Spinner';
 export const MainPage: React.FC = () => {
   const city = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
-  const isLoading = useAppSelector((state) => state.isOffersLoading);
+  const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffers());
+
+    return () => {
+      dispatch(clearOffers());
+    };
   }, [dispatch]);
 
   const offersByCity = useMemo(
@@ -35,7 +41,7 @@ export const MainPage: React.FC = () => {
             <CitiesList />
           </section>
         </div>
-        {isLoading ? (
+        {offersFetchStatus === FetchStatus.LOADING ? (
           <Spinner />
         ) : (
           <CityPlaces offers={offersByCity} city={city} />

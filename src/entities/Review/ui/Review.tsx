@@ -3,21 +3,20 @@ import {
   dateToYearMonthDay,
 } from '../../../shared/lib/date';
 import { Rating } from '../../../shared/ui/Rating';
-import { ReviewEntity } from '../interfaces';
+import { CommentGet } from '../interfaces';
 
-export const Review: React.FC<ReviewEntity> = ({
-  text,
+export const Review: React.FC<CommentGet> = ({
+  comment,
   date,
   rating,
-  userName,
-  userAvatarSrc,
+  user: { name: userName, avatarUrl: userAvatarUrl },
 }) => (
   <li className="reviews__item">
     <div className="reviews__user user">
       <div className="reviews__avatar-wrapper user__avatar-wrapper">
         <img
           className="reviews__avatar user__avatar"
-          src={userAvatarSrc}
+          src={userAvatarUrl}
           width="54"
           height="54"
           alt="Reviews avatar"
@@ -33,9 +32,12 @@ export const Review: React.FC<ReviewEntity> = ({
         mode="compact"
       />
 
-      <p className="reviews__text">{text}</p>
-      <time className="reviews__time" dateTime={dateToYearMonthDay(date)}>
-        {dateToMonthWordYear(date)}
+      <p className="reviews__text">{comment}</p>
+      <time
+        className="reviews__time"
+        dateTime={dateToYearMonthDay(new Date(date))}
+      >
+        {dateToMonthWordYear(new Date(date))}
       </time>
     </div>
   </li>

@@ -3,23 +3,31 @@ import { AxiosInstance } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
 import { components } from '../../../types/schema';
-import { OfferCardEntity } from '../../entities/OfferCard';
+import {
+  OfferMaximum,
+  OfferPreview,
+} from '../../entities/OfferCard/interfaces';
+import { CommentGet } from '../../entities/Review/interfaces';
 import { UserDto } from '../../entities/User/interfaces';
 import { MakeAllRequired } from '../../shared/interfaces';
 import { ApiRoutes } from '../api/routes';
 import { dropToken, saveToken } from '../api/token';
-import { AuthorizationStatus } from '../consts';
+import { AuthorizationStatus, FetchStatus } from '../consts';
 import {
   setAuthorizationStatus,
+  setOffer,
+  setOfferLoadingStatus,
   setOffers,
   setOffersLoadingStatus,
+  setReviews,
+  setReviewsLoadingStatus,
   setUser,
 } from './actions';
 import { AppDispatch, State } from './interfaces';
 
 type DispatchStateExtra = {
   dispatch: AppDispatch;
-  state: State;
+  getState: () => State;
   extra: AxiosInstance;
 };
 
@@ -28,11 +36,11 @@ export const fetchOffers = createAsyncThunk<
   undefined,
   DispatchStateExtra
 >('offers/fetch', async (_arg, { dispatch, extra: api }) => {
-  dispatch(setOffersLoadingStatus(true));
+  dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
 
-  const { data } = await api.get<OfferCardEntity[]>(ApiRoutes.OFFERS);
+  const { data } = await api.get<OfferPreview[]>(ApiRoutes.OFFERS);
 
-  dispatch(setOffersLoadingStatus(false));
+  dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
   dispatch(setOffers(data));
 });
 
@@ -51,6 +59,7 @@ export const checkLogin = createAsyncThunk<void, undefined, DispatchStateExtra>(
       dispatch(setUser(user));
       saveToken(token);
     } else {
+      // TODO: показывать сообщение об ошибке пользователю (бэк сообщает, что именно не так)
       dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     }
   },
@@ -88,5 +97,77 @@ export const logout = createAsyncThunk<void, undefined, DispatchStateExtra>(
     dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
     dispatch(setUser(undefined));
     dropToken();
+  },
+);
+
+export const fetchOffer = createAsyncThunk<void, string, DispatchStateExtra>(
+  'offer/fetch',
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setOfferLoadingStatus(FetchStatus.LOADING));
+
+    const { status, data } = await api.get<OfferMaximum>(
+      `${ApiRoutes.OFFERS}/${id}`,
+    );
+
+    if (status === Number(StatusCodes.NOT_FOUND)) {
+      dispatch(setOfferLoadingStatus(FetchStatus.FAILURE));
+      return;
+    }
+
+    dispatch(setOfferLoadingStatus(FetchStatus.SUCCESS));
+    dispatch(setOffer(data));
+  },
+);
+
+export const fetchOffersNearby = createAsyncThunk<
+  void,
+  string,
+  DispatchStateExtra
+>('offer/fetchNearbyOffers', async (id, { dispatch, extra: api }) => {
+  dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
+
+  const { data } = await api.get<OfferPreview[]>(
+    `${ApiRoutes.OFFERS}/${id}/nearby`,
+  );
+
+  dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
+  dispatch(setOffers(data));
+});
+
+export const fetchOfferReviews = createAsyncThunk<
+  void,
+  string,
+  DispatchStateExtra
+>('offer/fetchReview', async (id, { dispatch, extra: api }) => {
+  dispatch(setReviewsLoadingStatus(FetchStatus.LOADING));
+
+  const { data } = await api.get<CommentGet[]>(`${ApiRoutes.REVIEWS}/${id}`);
+
+  dispatch(setReviewsLoadingStatus(FetchStatus.SUCCESS));
+  dispatch(setReviews(data));
+});
+
+type CommentDto = MakeAllRequired<components['schemas']['CommentPost']>;
+
+export const addOfferReview = createAsyncThunk<
+  void,
+  CommentDto & { offerId: string },
+  DispatchStateExtra
+>(
+  'offer/fetchReview',
+  async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
+    const { status } = await api.post<CommentDto[]>(
+      `${ApiRoutes.REVIEWS}/${offerId}`,
+      {
+        comment,
+        rating,
+      },
+    );
+
+    const state = getState() as State;
+
+    if (status === Number(StatusCodes.CREATED) && state.offer?.id === offerId) {
+      dispatch(fetchOfferReviews(offerId));
+    }
   },
 );
