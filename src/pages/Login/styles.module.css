@@ -1,0 +1,10 @@
+.togglePasswordVisibilityButton {
+  width: 100%;
+  margin-bottom: 24px;
+  border: none;
+  background-color: transparent;
+
+  color: #4481c3;
+  text-align: center;
+  text-decoration: underline;
+}

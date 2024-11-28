@@ -1,21 +1,35 @@
 import classNames from 'classnames';
 import { useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { FetchStatus } from '../../app/consts';
-import { clearOffers } from '../../app/store/actions';
+import { clearOffers, setCity } from '../../app/store/actions';
 import { fetchOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { cities, CityName } from '../../entities/City';
+import { CityNames } from '../../entities/City/interfaces';
 import { CitiesList } from '../../entities/City/ui/CitiesList';
 import { Header } from '../../entities/Header';
 import { CityPlaces } from '../../features/CityPlaces';
 import { Spinner } from '../../shared/ui/Spinner';
 
 export const MainPage: React.FC = () => {
+  const location = useLocation();
+
+  const dispatch = useAppDispatch();
+
   const city = useAppSelector((state) => state.city);
+
   const offers = useAppSelector((state) => state.offers);
   const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
 
-  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const cityToSet = location.hash.slice(1) as CityName;
+
+    if (!CityNames.includes(cityToSet)) return;
+
+    dispatch(setCity(cities[cityToSet]));
+  }, [dispatch, location.hash]);
 
   useEffect(() => {
     dispatch(fetchOffers());

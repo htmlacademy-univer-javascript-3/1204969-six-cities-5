@@ -20,6 +20,8 @@ export type State = {
 
   reviews?: CommentGet[];
   reviewsFetchStatus: FetchStatus;
+
+  activeOfferId?: OfferCardEntity['id'];
 };
 
 export type AppDispatch = typeof store.dispatch;

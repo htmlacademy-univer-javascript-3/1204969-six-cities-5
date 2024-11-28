@@ -1,15 +1,20 @@
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useMemo, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
 import { AuthorizationStatus } from '../../app/consts';
 import { AppRoutes } from '../../app/routes';
 import { login } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { CityNames } from '../../entities/City/interfaces';
 import { Header } from '../../entities/Header';
 import { UserDto } from '../../entities/User/interfaces';
+import styles from './styles.module.css';
 
 export const LoginPage = () => {
   const dispatch = useAppDispatch();
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
   const isAuthorizated = useAppSelector(
     (state) => state.authorizationStatus === AuthorizationStatus.Auth,
   );
@@ -27,6 +32,11 @@ export const LoginPage = () => {
 
     dispatch(login(user as UserDto));
   };
+
+  const city = useMemo(
+    () => CityNames[Math.floor(Math.random() * CityNames.length)],
+    [],
+  );
 
   if (isAuthorizated) {
     return <Navigate to={AppRoutes.HOME} />;
@@ -60,11 +70,19 @@ export const LoginPage = () => {
                 <label className="visually-hidden">Password</label>
                 <input
                   className="login__input form__input"
-                  type="password"
+                  type={isPasswordVisible ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
                   required
+                  pattern="(.*[a-zA-Z].*[\d].*)|(.*[\d].*[a-zA-Z].*)"
                 />
+                <button
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                  type="button"
+                  className={styles.togglePasswordVisibilityButton}
+                >
+                  Make password {isPasswordVisible ? 'hidden' : 'visible'}
+                </button>
               </div>
               <button
                 className="login__submit form__submit button"
@@ -77,8 +95,11 @@ export const LoginPage = () => {
 
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <Link className="locations__item-link" to={AppRoutes.HOME}>
-                <span>Amsterdam</span>
+              <Link
+                className="locations__item-link"
+                to={`${AppRoutes.HOME}#${city}`}
+              >
+                <span>{city}</span>
               </Link>
             </div>
           </section>

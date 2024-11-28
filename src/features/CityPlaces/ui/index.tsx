@@ -12,12 +12,6 @@ import styles from './style.module.css';
 type CityPlacesProps = { offers: OfferCardEntity[]; city: City };
 
 export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
-  // FIXME: хранение стейта в этом компоненте вызывает ререндеры карты
-  // 1. на изменение activeOfferId — это правильно, но подумать, как оптимизировать
-  // 2. на изменение sortVariant ререндерить карту неправильно
-  const [activeOfferId, setActiveOfferId] = useState<
-    OfferCardEntity['id'] | null
-  >(null);
   const [sortVariant, setSortVariant] = useState<SortVariant>(
     SortVariant.POPULAR,
   );
@@ -59,15 +53,11 @@ export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
           <OffersList
             offers={sortedOffers}
             mix="cities__places-list"
-            changeActiveOffer={setActiveOfferId}
+            shouldUpdateActiveOffer
           />
         </section>
         <div className="cities__right-section">
-          <Map
-            city={city}
-            points={offers}
-            selectedPointId={activeOfferId ?? undefined}
-          />
+          <Map city={city} points={offers} />
         </div>
       </div>
     </div>

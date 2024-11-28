@@ -155,6 +155,7 @@ export const addOfferReview = createAsyncThunk<
   DispatchStateExtra
 >(
   'offer/fetchReview',
+  // TODO: уведомить пользователя, если не удалось
   async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
     const { status } = await api.post<CommentDto[]>(
       `${ApiRoutes.REVIEWS}/${offerId}`,

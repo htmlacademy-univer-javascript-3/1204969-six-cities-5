@@ -31,3 +31,7 @@ export const clearReviews = createAction('reviews/clear');
 export const setReviewsLoadingStatus = createAction<FetchStatus>(
   'reviews/setLoadingStatus',
 );
+
+export const setActiveOfferId = createAction<string | undefined>(
+  'ui/setActiveOfferId',
+);
