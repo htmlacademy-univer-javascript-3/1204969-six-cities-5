@@ -1,11 +1,27 @@
+import { useEffect } from 'react';
+
+import { FetchStatus } from '../../app/consts';
+import { clearOffers } from '../../app/store/actions';
+import { fetchFavoriteOffers } from '../../app/store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { Header } from '../../entities/Header';
-import { OfferCardEntity, OffersByCities } from '../../entities/OfferCard';
+import { OffersByCities } from '../../entities/OfferCard';
+import { Spinner } from '../../shared/ui/Spinner';
 
-type FavoritesPageProps = {
-  offers: OfferCardEntity[];
-};
+export const FavoritesPage = () => {
+  const dispatch = useAppDispatch();
 
-export const FavoritesPage: React.FC<FavoritesPageProps> = ({ offers }) => {
+  const offers = useAppSelector((state) => state.offers);
+  const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffers());
+
+    return () => {
+      dispatch(clearOffers());
+    };
+  }, [dispatch]);
+
   return (
     <div className="page">
       <Header />
@@ -14,7 +30,11 @@ export const FavoritesPage: React.FC<FavoritesPageProps> = ({ offers }) => {
         <div className="page__favorites-container container">
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
-            <OffersByCities offers={offers} />
+            {offersFetchStatus !== FetchStatus.SUCCESS || !offers ? (
+              <Spinner />
+            ) : (
+              <OffersByCities offers={offers} />
+            )}
           </section>
         </div>
       </main>

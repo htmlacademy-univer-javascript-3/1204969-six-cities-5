@@ -3,4 +3,5 @@ export const enum ApiRoutes {
   LOGIN = '/login',
   LOGOUT = '/logout',
   REVIEWS = '/comments',
+  FAVORITE = '/favorite',
 }

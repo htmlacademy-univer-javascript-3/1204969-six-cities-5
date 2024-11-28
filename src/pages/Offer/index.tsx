@@ -9,6 +9,7 @@ import {
   fetchOffer,
   fetchOfferReviews,
   fetchOffersNearby,
+  setIsOfferFavorite,
 } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { cities } from '../../entities/City';
@@ -77,6 +78,18 @@ export const OfferPage = () => {
     [dispatch, offer],
   );
 
+  const onFavoriteClick = () => {
+    if (!offer) return;
+
+    dispatch(
+      setIsOfferFavorite({
+        offerId: offer.id,
+        isFavorite: !offer.isFavorite,
+        context: 'offer',
+      }),
+    );
+  };
+
   if (!id || (offerFetchStatus === FetchStatus.FAILURE && !offer)) {
     return <Navigate to={'/404'} />;
   }
@@ -121,8 +134,15 @@ export const OfferPage = () => {
 
                   {isAuthorizated && (
                     <button
-                      className="offer__bookmark-button button"
+                      className={classNames(
+                        'offer__bookmark-button',
+                        'button',
+                        {
+                          ['offer__bookmark-button--active']: offer.isFavorite,
+                        },
+                      )}
                       type="button"
+                      onClick={onFavoriteClick}
                     >
                       <svg
                         className="offer__bookmark-icon"
