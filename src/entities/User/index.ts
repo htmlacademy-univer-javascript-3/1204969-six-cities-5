@@ -1,1 +1,1 @@
-export type { UserData, UserDataContext } from './interfaces';
+export type { User, UserDto } from './interfaces';

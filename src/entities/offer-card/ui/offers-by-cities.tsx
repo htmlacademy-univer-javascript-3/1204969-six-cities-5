@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-import { CityName } from '../../city';
-import { CityNames } from '../../city/interfaces';
+import { CityName, CityNames } from '../../city';
 import { OfferCard, OfferPreview } from '..';
 
 type OffersByCitiesProps = { offers: OfferPreview[] };

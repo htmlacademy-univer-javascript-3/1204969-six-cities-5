@@ -1,7 +1,7 @@
 import { City } from '../../entities/city';
 import { OfferMaximum, OfferPreview } from '../../entities/offer-card';
-import { CommentGet } from '../../entities/review/interfaces';
-import { User } from '../../entities/user/interfaces';
+import { CommentGet } from '../../entities/review';
+import { User } from '../../entities/user';
 import { AuthorizationStatus, FetchStatus } from '../consts';
 import { store } from '.';
 

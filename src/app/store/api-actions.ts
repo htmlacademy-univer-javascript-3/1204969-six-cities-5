@@ -4,8 +4,8 @@ import { StatusCodes } from 'http-status-codes';
 
 import { components } from '../../../types/schema';
 import { OfferMaximum, OfferPreview } from '../../entities/offer-card';
-import { CommentGet } from '../../entities/review/interfaces';
-import { UserDto } from '../../entities/user/interfaces';
+import { CommentGet } from '../../entities/review';
+import { UserDto } from '../../entities/user';
 import { MakeAllRequired } from '../../shared/interfaces';
 import { ApiRoutes } from '../api/routes';
 import { dropToken, saveToken } from '../api/token';
