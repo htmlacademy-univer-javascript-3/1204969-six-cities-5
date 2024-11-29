@@ -11,7 +11,7 @@ export const ReviewForm: React.FC<ReviewFormProps> = ({ onSubmit: submit }) => {
   const [comment, setComment] = useState('');
 
   const isSubmitDisabled =
-    rating === 0 || (comment.length <= 50 && comment.length >= 300);
+    rating === 0 || comment.length < 50 || comment.length > 300;
 
   const handleTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(event.target.value);

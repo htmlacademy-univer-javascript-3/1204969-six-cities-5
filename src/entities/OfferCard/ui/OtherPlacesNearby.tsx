@@ -1,5 +1,5 @@
-import { OffersList } from '../../../entities/OfferCard';
-import { OfferPreview } from '../../../entities/OfferCard/interfaces';
+import { OffersList } from '..';
+import { OfferPreview } from '../interfaces';
 
 type OtherPlacesNearbyProps = {
   offers: OfferPreview[];

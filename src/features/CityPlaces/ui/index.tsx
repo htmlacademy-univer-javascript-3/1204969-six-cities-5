@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { City } from '../../../entities/City';
 import { Map } from '../../../entities/Map';
 import { OfferCardEntity, OffersList } from '../../../entities/OfferCard';
+import { EmptyState } from '../../../shared/ui/empty-state';
 import { Select } from '../../../shared/ui/Select';
 import { sortVariants } from '../consts';
 import { SortVariant } from '../interfaces';
@@ -31,35 +32,39 @@ export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
 
   return (
     <div className="cities">
-      <div
-        className={classNames(
-          'cities__places-container',
-          'container',
-          styles.gridContainer,
-        )}
-      >
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">
-            {offers.length} places to stay in {city.name}
-          </b>
-          <Select
-            value={sortVariant}
-            onChange={setSortVariant}
-            options={sortVariants}
-            label="Sort by"
-          />
+      {offers.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <div
+          className={classNames(
+            'cities__places-container',
+            'container',
+            styles.gridContainer,
+          )}
+        >
+          <section className="cities__places places">
+            <h2 className="visually-hidden">Places</h2>
+            <b className="places__found">
+              {offers.length} places to stay in {city.name}
+            </b>
+            <Select
+              value={sortVariant}
+              onChange={setSortVariant}
+              options={sortVariants}
+              label="Sort by"
+            />
 
-          <OffersList
-            offers={sortedOffers}
-            mix="cities__places-list"
-            shouldUpdateActiveOffer
-          />
-        </section>
-        <div className="cities__right-section">
-          <Map city={city} points={offers} />
+            <OffersList
+              offers={sortedOffers}
+              mix="cities__places-list"
+              shouldUpdateActiveOffer
+            />
+          </section>
+          <div className="cities__right-section">
+            <Map city={city} points={offers} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
