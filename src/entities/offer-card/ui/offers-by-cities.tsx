@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 
-import { CityName } from '../../City';
-import { CityNames } from '../../City/interfaces';
-import { OfferCard, OfferCardEntity } from '..';
+import { CityName } from '../../city';
+import { CityNames } from '../../city/interfaces';
+import { OfferCard, OfferPreview } from '..';
 
-type OffersByCitiesProps = { offers: OfferCardEntity[] };
+type OffersByCitiesProps = { offers: OfferPreview[] };
 
 export const OffersByCities: React.FC<OffersByCitiesProps> = ({ offers }) => {
   const cityToOffersMap = useMemo(() => {
-    const citiesMap: Partial<Record<CityName, OfferCardEntity[]>> = {};
+    const citiesMap: Partial<Record<CityName, OfferPreview[]>> = {};
 
     offers.forEach((offer) => {
       const city = offer.city.name;

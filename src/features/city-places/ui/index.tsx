@@ -1,16 +1,16 @@
 import classNames from 'classnames';
 import { useMemo, useState } from 'react';
 
-import { City } from '../../../entities/City';
-import { Map } from '../../../entities/Map';
-import { OfferCardEntity, OffersList } from '../../../entities/OfferCard';
+import { City } from '../../../entities/city';
+import { Map } from '../../../entities/map';
+import { OfferPreview, OffersList } from '../../../entities/offer-card';
 import { EmptyState } from '../../../shared/ui/empty-state';
-import { Select } from '../../../shared/ui/Select';
+import { Select } from '../../../shared/ui/select';
 import { sortVariants } from '../consts';
 import { SortVariant } from '../interfaces';
 import styles from './style.module.css';
 
-type CityPlacesProps = { offers: OfferCardEntity[]; city: City };
+type CityPlacesProps = { offers: OfferPreview[]; city: City };
 
 export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
   const [sortVariant, setSortVariant] = useState<SortVariant>(

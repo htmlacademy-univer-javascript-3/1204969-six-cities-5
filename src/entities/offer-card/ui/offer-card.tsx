@@ -6,7 +6,7 @@ import { AuthorizationStatus } from '../../../app/consts';
 import { AppRoutes } from '../../../app/routes';
 import { setIsOfferFavorite } from '../../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
-import { Rating } from '../../../shared/ui/Rating';
+import { Rating } from '../../../shared/ui/rating';
 import { OfferPreview } from '../interfaces';
 
 type Props = {

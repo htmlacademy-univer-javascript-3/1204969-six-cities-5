@@ -5,9 +5,9 @@ import { AuthorizationStatus } from '../../app/consts';
 import { AppRoutes } from '../../app/routes';
 import { login } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { CityNames } from '../../entities/City/interfaces';
-import { Header } from '../../entities/Header';
-import { UserDto } from '../../entities/User/interfaces';
+import { CityNames } from '../../entities/city/interfaces';
+import { Header } from '../../entities/header';
+import { UserDto } from '../../entities/user/interfaces';
 import styles from './styles.module.css';
 
 export const LoginPage = () => {

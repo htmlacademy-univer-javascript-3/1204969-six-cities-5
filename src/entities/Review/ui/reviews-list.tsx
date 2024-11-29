@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import { CommentGet } from '../interfaces';
-import { Review } from './Review';
+import { Review } from './review';
 
 type ReviewsListProps = {
   reviews: CommentGet[];

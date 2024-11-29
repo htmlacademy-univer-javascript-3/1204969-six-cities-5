@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { AppRoutes } from '../../../app/routes';
-import { useAppSelector } from '../../../app/store/hooks';
-import { CityNames } from '../interfaces';
+import { AppRoutes } from '../../app/routes';
+import { useAppSelector } from '../../app/store/hooks';
+import { CityNames } from './interfaces';
 
 export const CitiesList = () => {
   const currentCity = useAppSelector((state) => state.city);

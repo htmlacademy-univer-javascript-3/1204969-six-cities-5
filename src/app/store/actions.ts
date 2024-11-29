@@ -1,15 +1,14 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { City } from '../../entities/City';
-import { OfferCardEntity } from '../../entities/OfferCard';
-import { OfferMaximum } from '../../entities/OfferCard/interfaces';
-import { CommentGet } from '../../entities/Review/interfaces';
-import { User } from '../../entities/User/interfaces';
+import { City } from '../../entities/city';
+import { OfferMaximum, OfferPreview } from '../../entities/offer-card';
+import { CommentGet } from '../../entities/review/interfaces';
+import { User } from '../../entities/user/interfaces';
 import { AuthorizationStatus, FetchStatus } from '../consts';
 
 export const setCity = createAction<City>('city/set');
 
-export const setOffers = createAction<OfferCardEntity[]>('offers/set');
+export const setOffers = createAction<OfferPreview[]>('offers/set');
 export const clearOffers = createAction('offers/clear');
 export const setOffersLoadingStatus = createAction<FetchStatus>(
   'offers/setLoadingStatus',

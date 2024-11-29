@@ -17,14 +17,14 @@ import {
   setIsOfferFavorite,
 } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { cities } from '../../entities/City';
-import { Header } from '../../entities/Header';
-import { Map } from '../../entities/Map';
-import { ReviewsList } from '../../entities/Review';
-import { OtherPlacesNearby } from '../../features/OtherPlacesNearby';
-import { ReviewForm } from '../../features/ReviewForm';
-import { Rating } from '../../shared/ui/Rating';
-import { Spinner } from '../../shared/ui/Spinner';
+import { cities } from '../../entities/city';
+import { Header } from '../../entities/header';
+import { Map } from '../../entities/map';
+import { OtherPlacesNearby } from '../../entities/offer-card/ui/other-places-nearby';
+import { ReviewsList } from '../../entities/review';
+import { ReviewForm } from '../../features/review-form';
+import { Rating } from '../../shared/ui/rating';
+import { Spinner } from '../../shared/ui/spinner';
 import styles from './styles.module.css';
 
 export const OfferPage = () => {

@@ -6,12 +6,10 @@ import { FetchStatus } from '../../app/consts';
 import { clearOffers, setCity } from '../../app/store/actions';
 import { fetchOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { cities, CityName } from '../../entities/City';
-import { CityNames } from '../../entities/City/interfaces';
-import { CitiesList } from '../../entities/City/ui/CitiesList';
-import { Header } from '../../entities/Header';
-import { CityPlaces } from '../../features/CityPlaces';
-import { Spinner } from '../../shared/ui/Spinner';
+import { cities, CitiesList, CityName, CityNames } from '../../entities/city';
+import { Header } from '../../entities/header';
+import { CityPlaces } from '../../features/city-places';
+import { Spinner } from '../../shared/ui/spinner';
 
 export const MainPage: React.FC = () => {
   const location = useLocation();

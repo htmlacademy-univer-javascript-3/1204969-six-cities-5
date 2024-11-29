@@ -2,7 +2,7 @@ import {
   dateToMonthWordYear,
   dateToYearMonthDay,
 } from '../../../shared/lib/date';
-import { Rating } from '../../../shared/ui/Rating';
+import { Rating } from '../../../shared/ui/rating';
 import { CommentGet } from '../interfaces';
 
 export const Review: React.FC<CommentGet> = ({

@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { cities } from '../../entities/City';
+import { cities } from '../../entities/city';
 import { AuthorizationStatus, FetchStatus } from '../consts';
 import {
   clearOffer,

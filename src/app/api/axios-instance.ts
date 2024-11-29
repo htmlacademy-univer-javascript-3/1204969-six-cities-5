@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
-import { baseUrl, timeout } from './axios-config';
+import { BASE_URL, TIMEOUT } from './axios-config';
 import { getToken } from './token';
 
 type DetailMessageType = {
@@ -20,8 +20,8 @@ const shouldDisplayError = (response: AxiosResponse) =>
 
 export const createAPI = (): AxiosInstance => {
   const api = axios.create({
-    baseURL: baseUrl,
-    timeout: timeout,
+    baseURL: BASE_URL,
+    timeout: TIMEOUT,
   });
 
   api.interceptors.request.use((config) => {
@@ -39,7 +39,7 @@ export const createAPI = (): AxiosInstance => {
     (error: AxiosError<DetailMessageType>) => {
       if (error.response && shouldDisplayError(error.response)) {
         // eslint-disable-next-line no-console
-        console.error('ERROR', error.response.data);
+        console.error(error.response.data);
       }
 
       return error.response;

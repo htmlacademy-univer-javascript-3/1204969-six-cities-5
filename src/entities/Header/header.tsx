@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import { AuthorizationStatus } from '../../../app/consts';
-import { AppRoutes } from '../../../app/routes';
-import { logout } from '../../../app/store/api-actions';
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
+import { AuthorizationStatus } from '../../app/consts';
+import { AppRoutes } from '../../app/routes';
+import { logout } from '../../app/store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 
 type HeaderProps = {
   isOnlyLogo?: boolean;

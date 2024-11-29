@@ -2,10 +2,10 @@ import classNames from 'classnames';
 
 import { setActiveOfferId } from '../../../app/store/actions';
 import { useAppDispatch } from '../../../app/store/hooks';
-import { OfferCard, OfferCardEntity } from '..';
+import { OfferCard, OfferPreview } from '..';
 
 type OffersListProps = {
-  offers: OfferCardEntity[];
+  offers: OfferPreview[];
   mix?: string;
   shouldUpdateActiveOffer?: boolean;
 };
@@ -17,7 +17,7 @@ export const OffersList: React.FC<OffersListProps> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const changeActiveOffer = (id?: OfferCardEntity['id']) => {
+  const changeActiveOffer = (id?: OfferPreview['id']) => {
     if (!shouldUpdateActiveOffer) return;
     dispatch(setActiveOfferId(id));
   };

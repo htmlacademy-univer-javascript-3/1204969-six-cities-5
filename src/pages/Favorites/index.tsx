@@ -4,9 +4,9 @@ import { FetchStatus } from '../../app/consts';
 import { clearOffers } from '../../app/store/actions';
 import { fetchFavoriteOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { Header } from '../../entities/Header';
-import { OffersByCities } from '../../entities/OfferCard';
-import { Spinner } from '../../shared/ui/Spinner';
+import { Header } from '../../entities/header';
+import { OffersByCities } from '../../entities/offer-card';
+import { Spinner } from '../../shared/ui/spinner';
 
 export const FavoritesPage = () => {
   const dispatch = useAppDispatch();

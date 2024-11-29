@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ReviewRating } from './ReviewRating';
+import { ReviewRating } from './review-rating';
 
 type ReviewFormProps = {
   onSubmit: ({ rating, comment }: { rating: number; comment: string }) => void;

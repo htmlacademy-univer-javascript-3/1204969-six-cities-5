@@ -3,12 +3,9 @@ import { AxiosInstance } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
 import { components } from '../../../types/schema';
-import {
-  OfferMaximum,
-  OfferPreview,
-} from '../../entities/OfferCard/interfaces';
-import { CommentGet } from '../../entities/Review/interfaces';
-import { UserDto } from '../../entities/User/interfaces';
+import { OfferMaximum, OfferPreview } from '../../entities/offer-card';
+import { CommentGet } from '../../entities/review/interfaces';
+import { UserDto } from '../../entities/user/interfaces';
 import { MakeAllRequired } from '../../shared/interfaces';
 import { ApiRoutes } from '../api/routes';
 import { dropToken, saveToken } from '../api/token';
