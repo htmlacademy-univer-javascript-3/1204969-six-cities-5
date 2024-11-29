@@ -6,6 +6,7 @@ import {
   clearOffer,
   clearOffers,
   clearReviews,
+  setActiveOfferId,
   setAuthorizationStatus,
   setCity,
   setOffer,
@@ -68,6 +69,9 @@ const reducer = createReducer(initialState, (builder) =>
     .addCase(clearReviews, (state) => {
       state.reviews = undefined;
       state.reviewsFetchStatus = FetchStatus.INITIAL;
+    })
+    .addCase(setActiveOfferId, (state, action) => {
+      state.activeOfferId = action.payload;
     }),
 );
 

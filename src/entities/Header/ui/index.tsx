@@ -62,7 +62,8 @@ export const Header: React.FC<HeaderProps> = ({ isOnlyLogo }) => {
                     <a
                       className="header__nav-link"
                       href="#"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.preventDefault();
                         dispatch(logout());
                       }}
                     >

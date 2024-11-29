@@ -155,6 +155,7 @@ export const addOfferReview = createAsyncThunk<
   DispatchStateExtra
 >(
   'offer/fetchReview',
+  // TODO: уведомить пользователя, если не удалось
   async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
     const { status } = await api.post<CommentDto[]>(
       `${ApiRoutes.REVIEWS}/${offerId}`,
@@ -168,6 +169,48 @@ export const addOfferReview = createAsyncThunk<
 
     if (status === Number(StatusCodes.CREATED) && state.offer?.id === offerId) {
       dispatch(fetchOfferReviews(offerId));
+    }
+  },
+);
+
+export const fetchFavoriteOffers = createAsyncThunk<
+  void,
+  undefined,
+  DispatchStateExtra
+>('offers/fetchFavoriteOffers', async (_arg, { dispatch, extra: api }) => {
+  dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
+
+  const { data } = await api.get<OfferPreview[]>(ApiRoutes.FAVORITE);
+
+  dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
+  dispatch(setOffers(data));
+});
+
+export const setIsOfferFavorite = createAsyncThunk<
+  void,
+  { offerId: string; isFavorite: boolean; context: 'offer' | 'offers' },
+  DispatchStateExtra
+>(
+  'offer/setIsOfferFavorite',
+  async (
+    { offerId, isFavorite, context },
+    { dispatch, extra: api, getState },
+  ) => {
+    const { data } = await api.post<OfferMaximum>(
+      `${ApiRoutes.FAVORITE}/${offerId}/${Number(isFavorite)}`,
+    );
+
+    if (context === 'offer') {
+      dispatch(setOffer(data));
+    } else {
+      const state = getState() as State;
+      if (!state.offers) return;
+
+      const newOffersState = state.offers.map((offer) =>
+        offer.id === offerId ? data : offer,
+      );
+
+      dispatch(setOffers(newOffersState));
     }
   },
 );

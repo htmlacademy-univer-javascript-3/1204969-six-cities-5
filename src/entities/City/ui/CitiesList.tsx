@@ -1,32 +1,27 @@
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
-import { setCity } from '../../../app/store/actions';
-import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
-import { cities } from '../const';
-import { CityName } from '../interfaces';
+import { AppRoutes } from '../../../app/routes';
+import { useAppSelector } from '../../../app/store/hooks';
+import { CityNames } from '../interfaces';
 
 export const CitiesList = () => {
   const currentCity = useAppSelector((state) => state.city);
-  const dispatch = useAppDispatch();
 
   return (
     <ul className="locations__list tabs__list">
-      {(Object.getOwnPropertyNames(cities) as CityName[]).map((cityName) => (
-        <li
-          className="locations__item"
-          key={cityName}
-          onClick={() => dispatch(setCity(cities[cityName]))}
-        >
-          <a
+      {CityNames.map((cityName) => (
+        <li className="locations__item" key={cityName}>
+          <Link
             className={classNames(
               'locations__item-link',
               'tabs__item',
-              currentCity?.name === cityName && 'tabs__item--active',
+              currentCity.name === cityName && 'tabs__item--active',
             )}
-            href="#"
+            to={`${AppRoutes.HOME}#${cityName}`}
           >
             <span>{cityName}</span>
-          </a>
+          </Link>
         </li>
       ))}
     </ul>
