@@ -2,11 +2,11 @@ import classNames from 'classnames';
 import { MouseEventHandler } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthorizationStatus } from '../../../app/consts';
 import { AppRoutes } from '../../../app/routes';
-import { setIsOfferFavorite } from '../../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../../app/store/hooks';
 import { Rating } from '../../../shared/ui/rating';
+import { getIsAuthenticated } from '../../user';
+import { setIsOfferFavorite } from '..';
 import { OfferPreview } from '../interfaces';
 
 type Props = {
@@ -43,9 +43,7 @@ export const OfferCard: React.FC<Props> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const isAuthorized = useAppSelector(
-    (state) => state.authorizationStatus === AuthorizationStatus.Auth,
-  );
+  const isAuthorized = useAppSelector(getIsAuthenticated);
 
   const onFavoriteClick = () => {
     dispatch(

@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../../app/routes';
 import { useAppSelector } from '../../app/store/hooks';
 import { CityNames } from './interfaces';
+import { getCity } from './model/selectors';
 
 export const CitiesList = () => {
-  const currentCity = useAppSelector((state) => state.city);
+  const currentCity = useAppSelector(getCity);
 
   return (
     <ul className="locations__list tabs__list">

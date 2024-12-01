@@ -1,18 +1,22 @@
 import { useEffect } from 'react';
 
 import { FetchStatus } from '../../app/consts';
-import { clearOffers } from '../../app/store/actions';
-import { fetchFavoriteOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { Header } from '../../entities/header';
-import { OffersByCities } from '../../entities/offer-card';
+import {
+  clearOffers,
+  fetchFavoriteOffers,
+  getOffers,
+  getOffersFetchStatus,
+  OffersByCities,
+} from '../../entities/offer-card';
 import { Spinner } from '../../shared/ui/spinner';
 
 export const FavoritesPage = () => {
   const dispatch = useAppDispatch();
 
-  const offers = useAppSelector((state) => state.offers);
-  const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
+  const offers = useAppSelector(getOffers);
+  const offersFetchStatus = useAppSelector(getOffersFetchStatus);
 
   useEffect(() => {
     dispatch(fetchFavoriteOffers());

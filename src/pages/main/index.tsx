@@ -3,11 +3,22 @@ import { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { FetchStatus } from '../../app/consts';
-import { clearOffers, setCity } from '../../app/store/actions';
-import { fetchOffers } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
-import { cities, CitiesList, CityName, CityNames } from '../../entities/city';
+import {
+  cities,
+  CitiesList,
+  CityName,
+  CityNames,
+  getCity,
+  setCity,
+} from '../../entities/city';
 import { Header } from '../../entities/header';
+import {
+  clearOffers,
+  fetchOffers,
+  getOffers,
+  getOffersFetchStatus,
+} from '../../entities/offer-card';
 import { CityPlaces } from '../../features/city-places';
 import { Spinner } from '../../shared/ui/spinner';
 
@@ -16,10 +27,10 @@ export const MainPage: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const city = useAppSelector((state) => state.city);
+  const city = useAppSelector(getCity);
 
-  const offers = useAppSelector((state) => state.offers);
-  const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
+  const offers = useAppSelector(getOffers);
+  const offersFetchStatus = useAppSelector(getOffersFetchStatus);
 
   useEffect(() => {
     const cityToSet = location.hash.slice(1) as CityName;

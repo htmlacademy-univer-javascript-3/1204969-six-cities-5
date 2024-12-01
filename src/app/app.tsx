@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { checkLogin, getAuthorizationStatus } from '../entities/user';
 import { Error404Page } from '../pages/error';
 import { FavoritesPage } from '../pages/favorites';
 import { LoginPage } from '../pages/login';
@@ -10,20 +11,17 @@ import { Spinner } from '../shared/ui/spinner';
 import { AuthorizationStatus } from './consts';
 import { LoggedRoute } from './logged-route';
 import { AppRoutes } from './routes';
-import { checkLogin } from './store/api-actions';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus,
-  );
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     dispatch(checkLogin());
   }, [dispatch]);
 
-  return authorizationStatus === AuthorizationStatus.Unknown ? (
+  return authorizationStatus === AuthorizationStatus.UNKNOWN ? (
     <Spinner />
   ) : (
     <BrowserRouter>

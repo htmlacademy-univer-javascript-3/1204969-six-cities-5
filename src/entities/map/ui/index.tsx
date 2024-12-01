@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 
 import { useAppSelector } from '../../../app/store/hooks';
 import { City } from '../../city';
+import { getActiveOfferId } from '../../offer-card';
 import { Point } from '../interfaces';
 import { useMap } from '../model/use-map';
 import { currentCustomIcon, defaultCustomIcon } from './map-icons';
@@ -16,7 +17,7 @@ export const Map: React.FC<MapProps> = ({ city, points }) => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  const selectedPointId = useAppSelector((state) => state.activeOfferId);
+  const selectedPointId = useAppSelector(getActiveOfferId);
 
   useEffect(() => {
     if (map) {
