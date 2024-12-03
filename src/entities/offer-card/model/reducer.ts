@@ -48,7 +48,6 @@ export const offerCardSlice = createSlice({
     ) => {
       state.activeOfferId = action.payload;
     },
-    // setIsOfferFavorite:
   },
 });
 

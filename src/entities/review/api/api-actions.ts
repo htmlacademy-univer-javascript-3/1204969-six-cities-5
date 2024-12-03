@@ -7,20 +7,23 @@ import { FetchStatus, NameSpace } from '../../../app/consts';
 import { DispatchStateExtra, State } from '../../../app/store/interfaces';
 import { MakeAllRequired } from '../../../shared/interfaces';
 import { CommentGet } from '../interfaces';
-import { setReviews, setReviewsLoadingStatus } from '../model/reducer';
+import { setReviews, setReviewsFetchStatus } from '../model/reducer';
 
 export const fetchOfferReviews = createAsyncThunk<
   void,
   string,
   DispatchStateExtra
->('review/fetchOfferReview', async (id, { dispatch, extra: api }) => {
-  dispatch(setReviewsLoadingStatus(FetchStatus.LOADING));
+>(
+  `${NameSpace.REVIEW}/fetchOfferReview`,
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setReviewsFetchStatus(FetchStatus.LOADING));
 
-  const { data } = await api.get<CommentGet[]>(`${ApiRoutes.REVIEWS}/${id}`);
+    const { data } = await api.get<CommentGet[]>(`${ApiRoutes.REVIEWS}/${id}`);
 
-  dispatch(setReviewsLoadingStatus(FetchStatus.SUCCESS));
-  dispatch(setReviews(data));
-});
+    dispatch(setReviewsFetchStatus(FetchStatus.SUCCESS));
+    dispatch(setReviews(data));
+  },
+);
 
 type CommentDto = MakeAllRequired<components['schemas']['CommentPost']>;
 
@@ -29,7 +32,7 @@ export const addOfferReview = createAsyncThunk<
   CommentDto & { offerId: string },
   DispatchStateExtra
 >(
-  'review/addOfferReview',
+  `${NameSpace.REVIEW}/addOfferReview`,
   // TODO: уведомить пользователя, если не удалось
   async ({ offerId, comment, rating }, { dispatch, getState, extra: api }) => {
     const { status } = await api.post<CommentDto[]>(

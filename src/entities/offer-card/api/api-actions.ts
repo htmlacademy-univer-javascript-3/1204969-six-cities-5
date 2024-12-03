@@ -16,7 +16,7 @@ export const fetchOffers = createAsyncThunk<
   void,
   undefined,
   DispatchStateExtra
->('offers/fetch', async (_arg, { dispatch, extra: api }) => {
+>(`${NameSpace.OFFER}/fetch`, async (_arg, { dispatch, extra: api }) => {
   dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
 
   const { data } = await api.get<OfferPreview[]>(ApiRoutes.OFFERS);
@@ -26,7 +26,7 @@ export const fetchOffers = createAsyncThunk<
 });
 
 export const fetchOffer = createAsyncThunk<void, string, DispatchStateExtra>(
-  'offer/fetch',
+  `${NameSpace.OFFER}/fetch`,
   async (id, { dispatch, extra: api }) => {
     dispatch(setOfferLoadingStatus(FetchStatus.LOADING));
 
@@ -48,36 +48,42 @@ export const fetchOffersNearby = createAsyncThunk<
   void,
   string,
   DispatchStateExtra
->('offer/fetchNearbyOffers', async (id, { dispatch, extra: api }) => {
-  dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
+>(
+  `${NameSpace.OFFER}/fetchNearbyOffers`,
+  async (id, { dispatch, extra: api }) => {
+    dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
 
-  const { data } = await api.get<OfferPreview[]>(
-    `${ApiRoutes.OFFERS}/${id}/nearby`,
-  );
+    const { data } = await api.get<OfferPreview[]>(
+      `${ApiRoutes.OFFERS}/${id}/nearby`,
+    );
 
-  dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
-  dispatch(setOffers(data));
-});
+    dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
+    dispatch(setOffers(data));
+  },
+);
 
 export const fetchFavoriteOffers = createAsyncThunk<
   void,
   undefined,
   DispatchStateExtra
->('offers/fetchFavoriteOffers', async (_arg, { dispatch, extra: api }) => {
-  dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
+>(
+  `${NameSpace.OFFER}/fetchFavoriteOffers`,
+  async (_arg, { dispatch, extra: api }) => {
+    dispatch(setOffersLoadingStatus(FetchStatus.LOADING));
 
-  const { data } = await api.get<OfferPreview[]>(ApiRoutes.FAVORITE);
+    const { data } = await api.get<OfferPreview[]>(ApiRoutes.FAVORITE);
 
-  dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
-  dispatch(setOffers(data));
-});
+    dispatch(setOffersLoadingStatus(FetchStatus.SUCCESS));
+    dispatch(setOffers(data));
+  },
+);
 
 export const setIsOfferFavorite = createAsyncThunk<
   void,
   { offerId: string; isFavorite: boolean; context: 'offer' | 'offers' },
   DispatchStateExtra
 >(
-  'offer/setIsOfferFavorite',
+  `${NameSpace.OFFER}/setIsOfferFavorite`,
   async (
     { offerId, isFavorite, context },
     { dispatch, extra: api, getState },

@@ -23,11 +23,11 @@ export const reviewSlice = createSlice({
       state.reviews = undefined;
       state.reviewsFetchStatus = FetchStatus.INITIAL;
     },
-    setReviewsLoadingStatus: (state, action: PayloadAction<FetchStatus>) => {
+    setReviewsFetchStatus: (state, action: PayloadAction<FetchStatus>) => {
       state.reviewsFetchStatus = action.payload;
     },
   },
 });
 
-export const { setReviews, clearReviews, setReviewsLoadingStatus } =
+export const { setReviews, clearReviews, setReviewsFetchStatus } =
   reviewSlice.actions;
