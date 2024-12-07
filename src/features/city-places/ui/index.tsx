@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { City } from '../../../entities/city';
 import { Map } from '../../../entities/map';
 import { OfferPreview, OffersList } from '../../../entities/offer-card';
-import { EmptyState } from '../../../shared/ui/empty-state';
+import { EmptyCityState } from '../../../shared/ui/empty-city-state';
 import { Select } from '../../../shared/ui/select';
 import { sortVariants } from '../consts';
 import { SortVariant } from '../interfaces';
@@ -33,7 +33,7 @@ export const CityPlaces: React.FC<CityPlacesProps> = ({ offers, city }) => {
   return (
     <div className="cities">
       {offers.length === 0 ? (
-        <EmptyState />
+        <EmptyCityState cityName={city.name} />
       ) : (
         <div
           className={classNames(
