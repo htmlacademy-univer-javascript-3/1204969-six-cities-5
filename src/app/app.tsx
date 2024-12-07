@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { SnackbarContainer } from '../entities/snackbar';
 import { checkLogin, getAuthorizationStatus } from '../entities/user';
 import { Error404Page } from '../pages/error';
 import { FavoritesPage } from '../pages/favorites';
@@ -24,19 +25,22 @@ export const App: React.FC = () => {
   return authorizationStatus === AuthorizationStatus.UNKNOWN ? (
     <Spinner />
   ) : (
-    <Routes>
-      <Route path={AppRoutes.HOME} element={<MainPage />} />
-      <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-      <Route
-        path={AppRoutes.FAVORITES}
-        element={
-          <LoggedRoute>
-            <FavoritesPage />
-          </LoggedRoute>
-        }
-      />
-      <Route path={`${AppRoutes.OFFER}/:id`} element={<OfferPage />} />
-      <Route path={AppRoutes.NOT_FOUND} element={<Error404Page />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path={AppRoutes.HOME} element={<MainPage />} />
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+        <Route
+          path={AppRoutes.FAVORITES}
+          element={
+            <LoggedRoute>
+              <FavoritesPage />
+            </LoggedRoute>
+          }
+        />
+        <Route path={`${AppRoutes.OFFER}/:id`} element={<OfferPage />} />
+        <Route path={AppRoutes.NOT_FOUND} element={<Error404Page />} />
+      </Routes>
+      <SnackbarContainer />
+    </>
   );
 };
