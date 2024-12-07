@@ -67,6 +67,7 @@ export const OfferCard: React.FC<Props> = ({
       )}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
+      data-offer-id={id}
     >
       {Boolean(isPremium) && (
         <div className="place-card__mark">

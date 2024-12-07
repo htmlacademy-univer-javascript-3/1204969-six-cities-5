@@ -58,6 +58,6 @@ describe('<Select />', () => {
     await userEvent.click(screen.getByText('2'));
 
     expect(screen.queryByText('2')).not.toBeInTheDocument();
-    expect(onChange).toBeCalled();
+    expect(onChange).toBeCalledWith('2');
   });
 });
