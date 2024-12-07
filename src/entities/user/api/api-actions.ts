@@ -29,6 +29,7 @@ export const checkLogin = createAsyncThunk<void, undefined, DispatchStateExtra>(
     } else {
       // TODO: показывать сообщение об ошибке пользователю (бэк сообщает, что именно не так)
       dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+      dropToken();
     }
   },
 );
