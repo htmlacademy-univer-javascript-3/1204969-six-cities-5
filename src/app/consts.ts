@@ -16,4 +16,5 @@ export const enum NameSpace {
   USER = 'USER',
   CITY = 'CITY',
   REVIEW = 'REVIEW',
+  SNACKBAR = 'SNACKBAR',
 }
