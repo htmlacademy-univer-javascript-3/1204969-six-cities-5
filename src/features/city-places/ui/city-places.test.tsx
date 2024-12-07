@@ -14,6 +14,8 @@ describe('<CityPlaces />', () => {
   const { mockStoreCreator } = initAsyncActionsStore();
   let store: ReturnType<typeof mockStoreCreator>;
 
+  const offers = makeOffers();
+
   beforeEach(() => {
     store = mockStoreCreator({
       [NameSpace.USER]: {
@@ -26,8 +28,6 @@ describe('<CityPlaces />', () => {
   });
 
   it('should render correctly', () => {
-    const offers = makeOffers();
-
     const component = (
       <Provider store={store}>
         <BrowserRouter>
@@ -57,8 +57,6 @@ describe('<CityPlaces />', () => {
   });
 
   it('should render first offer of array if default order', () => {
-    const offers = makeOffers();
-
     const component = (
       <Provider store={store}>
         <BrowserRouter>
@@ -78,8 +76,6 @@ describe('<CityPlaces />', () => {
   });
 
   it('should render most rated offer of array if top rated sorting', async () => {
-    const offers = makeOffers();
-
     const component = (
       <Provider store={store}>
         <BrowserRouter>
@@ -113,8 +109,6 @@ describe('<CityPlaces />', () => {
   });
 
   it('should render most expensive offer of array if most expensive sorting', async () => {
-    const offers = makeOffers();
-
     const component = (
       <Provider store={store}>
         <BrowserRouter>
@@ -148,8 +142,6 @@ describe('<CityPlaces />', () => {
   });
 
   it('should render most cheap offer of array if most cheap sorting', async () => {
-    const offers = makeOffers();
-
     const component = (
       <Provider store={store}>
         <BrowserRouter>
