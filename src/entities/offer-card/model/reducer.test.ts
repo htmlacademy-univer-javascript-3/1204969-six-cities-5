@@ -1,5 +1,5 @@
 import { FetchStatus } from '../../../app/consts';
-import { makeOfferMaximum, makeOffers } from '../utils/mocks';
+import { makeOfferMaximum, makeOffers } from '../lib/mocks';
 import {
   clearOffer,
   clearOffers,

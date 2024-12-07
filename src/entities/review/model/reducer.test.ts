@@ -1,6 +1,6 @@
 import { FetchStatus } from '../../../app/consts';
 import { reviewSlice, setReviews, setReviewsFetchStatus } from '..';
-import { makeReviews } from '../utils/mocks';
+import { makeReviews } from '../lib/mocks';
 
 describe('review slice', () => {
   it('should correct change review fetch status', () => {

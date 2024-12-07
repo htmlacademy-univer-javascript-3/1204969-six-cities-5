@@ -4,7 +4,7 @@ import { ApiRoutes } from '../../../app/api/routes';
 import { AuthorizationStatus, NameSpace } from '../../../app/consts';
 import { initAsyncActionsStore } from '../../../app/utils/mocks';
 import { setAuthorizationStatus, setUser } from '../model/reducer';
-import { makeUser } from '../utils/mocks';
+import { makeUser } from '../lib/mocks';
 import { checkLogin, logout } from './api-actions';
 
 const extractActionsTypes = (actions: Action<string>[]) =>

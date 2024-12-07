@@ -1,5 +1,5 @@
 import { AuthorizationStatus } from '../../../app/consts';
-import { makeUser } from '../utils/mocks';
+import { makeUser } from '../lib/mocks';
 import { setAuthorizationStatus, setUser, userSlice } from './reducer';
 
 describe('user slice', () => {

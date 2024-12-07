@@ -4,7 +4,7 @@ import { ApiRoutes } from '../../../app/api/routes';
 import { FetchStatus, NameSpace } from '../../../app/consts';
 import { initAsyncActionsStore } from '../../../app/utils/mocks';
 import { setReviews, setReviewsFetchStatus } from '..';
-import { makeReview, makeReviews } from '../utils/mocks';
+import { makeReview, makeReviews } from '../lib/mocks';
 import { addOfferReview, fetchOfferReviews } from './api-actions';
 
 const extractActionsTypes = (actions: Action<string>[]) =>
