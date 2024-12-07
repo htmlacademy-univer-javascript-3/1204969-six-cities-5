@@ -1,13 +1,11 @@
 import { FormEventHandler, useMemo, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 
-import { AuthorizationStatus } from '../../app/consts';
 import { AppRoutes } from '../../app/routes';
-import { login } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { CityNames } from '../../entities/city';
 import { Header } from '../../entities/header';
-import { UserDto } from '../../entities/user';
+import { getIsAuthenticated, login, UserDto } from '../../entities/user';
 import styles from './styles.module.css';
 
 export const LoginPage = () => {
@@ -15,9 +13,7 @@ export const LoginPage = () => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const isAuthorizated = useAppSelector(
-    (state) => state.authorizationStatus === AuthorizationStatus.Auth,
-  );
+  const isAuthorizated = useAppSelector(getIsAuthenticated);
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();

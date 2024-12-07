@@ -2,26 +2,35 @@ import classNames from 'classnames';
 import { useCallback, useEffect, useMemo } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 
-import { AuthorizationStatus, FetchStatus } from '../../app/consts';
-import {
-  clearOffer,
-  clearOffers,
-  clearReviews,
-  setActiveOfferId,
-} from '../../app/store/actions';
-import {
-  addOfferReview,
-  fetchOffer,
-  fetchOfferReviews,
-  fetchOffersNearby,
-  setIsOfferFavorite,
-} from '../../app/store/api-actions';
+import { FetchStatus } from '../../app/consts';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
 import { cities } from '../../entities/city';
 import { Header } from '../../entities/header';
 import { Map } from '../../entities/map';
+import {
+  clearOffer,
+  clearOffers,
+  fetchOffer,
+  fetchOffersNearby,
+  setActiveOfferId,
+  setIsOfferFavorite,
+} from '../../entities/offer-card';
+import {
+  getOffer,
+  getOfferFetchStatus,
+  getOffers,
+  getOffersFetchStatus,
+} from '../../entities/offer-card/model/selectors';
 import { OtherPlacesNearby } from '../../entities/offer-card/ui/other-places-nearby';
-import { ReviewsList } from '../../entities/review';
+import {
+  addOfferReview,
+  clearReviews,
+  fetchOfferReviews,
+  getLatest10Reviews,
+  getReviewsFetchStatus,
+  ReviewsList,
+} from '../../entities/review';
+import { getIsAuthenticated } from '../../entities/user';
 import { ReviewForm } from '../../features/review-form';
 import { Rating } from '../../shared/ui/rating';
 import { Spinner } from '../../shared/ui/spinner';
@@ -32,24 +41,16 @@ export const OfferPage = () => {
 
   const dispatch = useAppDispatch();
 
-  const offer = useAppSelector((state) => state.offer);
-  const offerFetchStatus = useAppSelector((state) => state.offerFetchStatus);
+  const offer = useAppSelector(getOffer);
+  const offerFetchStatus = useAppSelector(getOfferFetchStatus);
 
-  const offers = useAppSelector((state) => state.offers);
-  const offersFetchStatus = useAppSelector((state) => state.offersFetchStatus);
+  const offers = useAppSelector(getOffers);
+  const offersFetchStatus = useAppSelector(getOffersFetchStatus);
 
-  const reviews = useAppSelector((state) =>
-    state.reviews
-      ?.slice(0, 10)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
-  );
-  const reviewsFetchStatus = useAppSelector(
-    (state) => state.reviewsFetchStatus,
-  );
+  const reviews = useAppSelector(getLatest10Reviews);
+  const reviewsFetchStatus = useAppSelector(getReviewsFetchStatus);
 
-  const isAuthorizated = useAppSelector(
-    (state) => state.authorizationStatus === AuthorizationStatus.Auth,
-  );
+  const isAuthorizated = useAppSelector(getIsAuthenticated);
 
   useEffect(() => {
     if (!id) return;

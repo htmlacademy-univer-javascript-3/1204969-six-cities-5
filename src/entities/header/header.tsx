@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { AuthorizationStatus } from '../../app/consts';
 import { AppRoutes } from '../../app/routes';
-import { logout } from '../../app/store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks';
+import { getIsAuthenticated, getUser, logout } from '../user';
 
 type HeaderProps = {
   isOnlyLogo?: boolean;
@@ -12,11 +11,9 @@ type HeaderProps = {
 export const Header: React.FC<HeaderProps> = ({ isOnlyLogo }) => {
   const dispatch = useAppDispatch();
 
-  const isAuthorizated = useAppSelector(
-    (state) => state.authorizationStatus === AuthorizationStatus.Auth,
-  );
+  const isAuthorizated = useAppSelector(getIsAuthenticated);
 
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector(getUser);
 
   return (
     <header className="header">
