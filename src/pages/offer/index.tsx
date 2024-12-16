@@ -75,9 +75,13 @@ export const OfferPage = () => {
     };
   }, [dispatch, id, offer]);
 
-  const firstThreeOffers = useMemo(
+  const currentWithFirstThreeOffersNearby = useMemo(
     () => (offer ? [offer, ...(offers?.slice(0, 3) ?? [])] : []),
     [offer, offers],
+  );
+  const firstFourOffersNearby = useMemo(
+    () => offers?.slice(0, 4) ?? [],
+    [offers],
   );
 
   const onReviewSubmit = useCallback(
@@ -246,7 +250,10 @@ export const OfferPage = () => {
             <section
               className={classNames('map', 'container', styles.offerMap)}
             >
-              <Map city={cities[offer.city.name]} points={firstThreeOffers} />
+              <Map
+                city={cities[offer.city.name]}
+                points={currentWithFirstThreeOffersNearby}
+              />
             </section>
           </section>
         )}
@@ -254,7 +261,7 @@ export const OfferPage = () => {
           {offersFetchStatus !== FetchStatus.SUCCESS || !offers ? (
             <Spinner />
           ) : (
-            <OtherPlacesNearby offers={offers} />
+            <OtherPlacesNearby offers={firstFourOffersNearby} />
           )}
         </div>
       </main>
